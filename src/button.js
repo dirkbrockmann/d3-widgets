@@ -4,6 +4,8 @@ import symbol from "./button-symbols.js"
 
 export default () => {
 
+	const type = "button";
+	
 	var id = randomId(),
 		css = "button",
 		size = 50,
@@ -25,6 +27,7 @@ export default () => {
 			}
 				
 		return {
+			type:type,
 			id: function(arg) { if ("undefined" === typeof arg) { return id } else { id = arg; return this }},			
 			css: function(arg) { if ("undefined" === typeof arg) { return css } else { css = arg; return this }},			
 			size: function(arg) { if ("undefined" === typeof arg) { return size } else { size = arg; return this }},
@@ -40,6 +43,7 @@ export default () => {
 			actions: function(arg) { if ("undefined" === typeof arg) { return actions } else { actions = arg; return this }},
 			value: function(arg) { if ("undefined" === typeof arg) { return value } else { value = arg; return this }},
 			click:click
+
 		}
 };	
 

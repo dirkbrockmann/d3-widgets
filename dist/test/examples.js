@@ -16,7 +16,7 @@ function example_button_actions(){
 		widgets.button().actions(["forward"])		
 	]
 	
-	svg.selectAll(".button").data(b).enter().append(widgets.buttonElement)
+	svg.selectAll(".button").data(b).enter().append(widgets.widget)
 		.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 8)+","+h/2+")"});
 }
 
@@ -34,7 +34,7 @@ function example_button_features_1(){
 			.size(60).label("donk").labelposition("right").shape("rect")
 			.fontsize(30)
 	
-	svg.selectAll(".button").data([button1, button2]).enter().append(widgets.buttonElement)
+	svg.selectAll(".button").data([button1, button2]).enter().append(widgets.widget)
 		.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 2)+","+h/2+")"});
 }
 
@@ -64,7 +64,7 @@ const set1_buttons = set1_actions.map(function(x, i) {
 const set1 = svg.append("g")
 	.attr("transform", "translate(" + set1_anchor.x + "," + set1_anchor.y + ")");
 
-set1.selectAll(".button").data(set1_buttons).enter().append(widgets.buttonElement);
+set1.selectAll(".button").data(set1_buttons).enter().append(widgets.widget);
 
 // button set 2
 
@@ -84,7 +84,7 @@ const set2_buttons = set2_actions.map(function(x, i) {
 const set2 = svg.append("g")
  	.attr("transform", "translate(" + set2_anchor.x + "," + set2_anchor.y + ")");
 
-set2.selectAll(".button").data(set2_buttons).enter().append(widgets.buttonElement);
+set2.selectAll(".button").data(set2_buttons).enter().append(widgets.widget);
 
 // slider set 1
 
@@ -96,7 +96,7 @@ const set3_sliders=[1,2,3].map(x=>widgets.slider().labelposition("bottom-right")
 const set3 = svg.append("g")
  	.attr("transform", "translate(" + set3_anchor.x + "," + set3_anchor.y + ")");
 
-set3.selectAll(".slider").data(set3_sliders).enter().append(widgets.sliderElement);
+set3.selectAll(".slider").data(set3_sliders).enter().append(widgets.widget);
 
 // slider set 2
 
@@ -110,7 +110,7 @@ const set4_sliders=[0,1,2,3].map(x=>widgets.slider().show(true).girth(20).knob(6
 const set4 = svg.append("g")
   	.attr("transform", "translate(" + set4_anchor.x + "," + set4_anchor.y + ")");
 
-set4.selectAll(".slider").data(set4_sliders).enter().append(widgets.sliderElement);
+set4.selectAll(".slider").data(set4_sliders).enter().append(widgets.widget);
 
 // toggle set 1
 
@@ -122,7 +122,7 @@ const set5_toggles = [0,1,2,3,4,5].map(x=>widgets.toggle().position(set5_pos[x])
 const set5 = svg.append("g")
   	.attr("transform", "translate(" + set5_anchor.x + "," + set5_anchor.y + ")");
 
-set5.selectAll(".toggle").data(set5_toggles).enter().append(widgets.toggleElement); 
+set5.selectAll(".toggle").data(set5_toggles).enter().append(widgets.widget); 
 
 // radiobox 1
 
@@ -134,7 +134,7 @@ const set6_radio = widgets.radio().choices(set6_choices)
 const set6 = svg.append("g")
   	.attr("transform", "translate(" + set6_pos.x + "," + set6_pos.y + ")");
 
-set6.selectAll(".radio").data([set6_radio]).enter().append(widgets.radioElement); 
+set6.selectAll(".radio").data([set6_radio]).enter().append(widgets.widget); 
 
 // radiobox 2
 
@@ -147,6 +147,6 @@ const set7_radio = widgets.radio().choices(set7_choices).shape("rect").fontsize(
 const set7 = svg.append("g")
   	.attr("transform", "translate(" + set7_pos.x + "," + set7_pos.y + ")");
 
-set7.selectAll(".radio").data([set7_radio]).enter().append(widgets.radioElement); 
+set7.selectAll(".radio").data([set7_radio]).enter().append(widgets.widget); 
 }
 

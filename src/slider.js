@@ -3,7 +3,8 @@ import {randomId} from "./utils.js"
 
 export default () => {
 	
-	const nf = d3.format(".3f")	
+	const type = "slider";
+	const nf = d3.format(".3f");
 	const trackBorder = 0.5;
 	
 	var id = randomId(),
@@ -35,6 +36,7 @@ export default () => {
 			}
 	
 		return {
+			type: type,
 			id: function(arg) { if ("undefined" === typeof arg) { return id } else { id = arg; return this }},
 			label: function(arg) { if ("undefined" === typeof arg) { return label } else { label = arg; return this }},			
 			css: function(arg) { if ("undefined" === typeof arg) { return css } else { css = arg; return this }},			

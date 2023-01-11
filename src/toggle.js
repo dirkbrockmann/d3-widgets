@@ -3,6 +3,8 @@ import {randomId} from "./utils.js"
 
 export default () => {
 
+	const type = "toggle";
+	
 	var id = randomId(),
 		css = "toggle",
 		size = 10,
@@ -24,6 +26,7 @@ export default () => {
 		}
 				
 		return {
+			type: type,
 			id: function(arg) { if ("undefined" === typeof arg) { return id } else { id = arg; return this }},			
 			css: function(arg) { if ("undefined" === typeof arg) { return css } else { css = arg; return this }},			
 			size: function(arg) { if ("undefined" === typeof arg) { return size } else { size = arg; return this }},
