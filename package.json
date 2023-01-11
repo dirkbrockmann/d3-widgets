@@ -2,9 +2,14 @@
   "name": "@dirkbrockmann/d3-widgets",
   "version": "1.0.0",
   "description": "Widgets for d3 Applications and Visualizations",
-  "main": "./src/index.js",
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dirkbrockmann/d3-widgets.git"
+  },
+  "author": "Dirk Brockmann <dirk.brockmann@hu-berlin.de (https://rocs.hu-berlin.de)",
+  "main": "./dist/widgets.js",
+  "module": "src/index.js",
+  "keywords": ["d3", "widgets", "visualization"],
   "license": "ISC",
   "scripts": {
     "build": "webpack --mode production",
@@ -27,5 +32,9 @@
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/dirkbrockmann/lattices/issues"
+  },
+  "homepage": "https://github.com/dirkbrockmann/lattices#readme"
 }
