@@ -15,11 +15,6 @@
     "build": "webpack --mode production",
     "dev": "webpack serve --static dist/test --mode development"
   },
-  "files": [
-    "dist/*.js",
-    "src/*.js",
-	"src/*.css"
-  ],
   "exports": {
     "default": "./src/index.js"
   },
