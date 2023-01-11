@@ -1,0 +1,122 @@
+.button {
+	fill:none;
+	stroke:#000;
+	stroke-width:0.5px;
+}
+
+.button .background {
+	fill: #ddd;
+	cursor: pointer;
+}
+
+.button:hover .background {
+	fill: #eee	;
+	cursor: pointer;
+}
+
+.button .symbol {
+	fill: #fff;
+	fill-rule:nonzero;
+	pointer-events: none;
+}
+
+.button:hover .symbol {
+		fill: #bbb;
+		pointer-events: none;
+}
+
+.button .label, .slider .label, .toggle .label {
+  fill:black;
+  stroke:none;
+}
+
+.slider {
+	stroke-linecap: round;
+}
+
+.slider .track {
+  stroke: #000;
+  stroke-width: 4px;
+}
+
+.slider .track-inset {
+  stroke: #ddd;
+  stroke-width: 2px;
+}
+
+.slider .track-overlay {
+  pointer-events: stroke;
+  cursor: pointer;
+  stroke: transparent;
+}
+
+.slider .handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: 1;
+  stroke-width: .5px;
+
+}
+
+.toggle {
+	stroke-linecap: round;
+}
+
+.toggle .track {
+  stroke: #000;
+  stroke-width: 4px;
+}
+
+.toggle .track-inset {
+  stroke: #ddd;
+  stroke-width: 2px;
+}
+
+.toggle .track-inset-on {
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+.toggle .track-overlay {
+  pointer-events: stroke;
+  cursor: pointer;
+  stroke: transparent;
+}
+
+.toggle .handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: .5px;
+
+}
+
+.radio {
+	cursor: pointer;
+}
+.radiobutton > .background {
+	fill: #ddd;
+	stroke:#000;
+	stroke-width:0.5px;
+}
+
+.radiobutton > .led-off {
+	pointer-events: stroke;
+	fill: #fff;
+	stroke:#000;
+	stroke-width:0.5px;
+}
+
+.radiobutton > .led-on {
+	pointer-events: stroke;
+	fill: #000;
+	stroke:#000;
+	stroke-width:0.5px;
+}
+
+.radiobutton:hover .led-off,.radiobutton:hover .led-on {
+	fill: #bbb;
+	stroke:#000;
+	stroke-width:0.5px;
+}
+
+
