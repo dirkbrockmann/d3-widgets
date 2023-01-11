@@ -17,7 +17,8 @@
   },
   "files": [
     "dist/*.js",
-    "src/*.js"
+    "src/*.js",
+	"src/*.css"
   ],
   "exports": {
     "default": "./src/index.js"
