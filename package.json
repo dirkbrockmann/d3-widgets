@@ -1,6 +1,6 @@
 {
-  "name": "@dirkbrockmann/d3-widgets",
-  "version": "1.0.1",
+  "name": "d3-widgets",
+  "version": "1.0.2",
   "description": "Widgets for d3 Applications and Visualizations",
   "repository": {
     "type": "git",

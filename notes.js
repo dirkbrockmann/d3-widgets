@@ -1,5 +1,0 @@
-buttondata = {
-	size: 50,
-	
-
-}
