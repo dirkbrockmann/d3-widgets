@@ -1,3 +1,141 @@
+function example_radio_features_2(){
+	
+	const w = 600, h = 100;	
+	
+	const svg = d3.select("#example_radio_features_2").append("svg")
+		.attr("width", w).attr("height", h);
+	
+	const choices = ["topel","fruck","goint","mulk","semples"];
+	
+	const radio = widgets.radio()
+		.choices(choices)
+		.position({x:50,y:h/2})
+		.shape("rect")
+		.orientation("horizontal")
+		.labelposition("top")
+		.fontsize(20)
+		.size(400)
+		.buttonsize(60)
+		.buttonpadding(0.7)
+	
+	svg.selectAll(".radio").data([radio]).enter().append(widgets.widget);
+	
+}
+function example_radio_features_1(){
+	
+	const w = 400, h = 150;	
+	
+	const svg = d3.select("#example_radio_features_1").append("svg")
+		.attr("width", w).attr("height", h);
+	
+	const choices = ["topel","fruck","goint","mulk"];
+	
+	const radio = widgets.radio().choices(choices).position({x:20,y:25})
+	
+	svg.selectAll(".radio").data([radio]).enter().append(widgets.widget);
+	
+}
+
+function example_toggle_features_1(){
+	const w = 600, h = 80;	
+	const svg = d3.select("#example_toggle_features_1").append("svg")
+		.attr("width", w).attr("height", h)
+	
+	labels = ["topel","fruck","goint","mulk"];
+	labelpos = ["left","bottom","top","right"];
+	
+	const toggles = labels
+		.map( (q,i) => widgets.toggle().label(q).labelposition(labelpos[i]))
+	
+	toggles.forEach((t,i)=>{ t.position({x:(i)* w / 4+80,y:h/2})
+	})
+	
+	svg.selectAll(".toggle").data(toggles).enter().append(widgets.widget)
+}
+function example_slider_features_3(){
+
+	const w = 400, h = 180;
+	
+	const svg = d3.select("#example_slider_features_3").append("svg")
+		.attr("width", w).attr("height", h)
+	
+	const sliders = ["topel","fruck","goint"].map( q => widgets.slider().label(q))
+	
+	sliders.forEach((s,i)=>{
+		s.position({x:50,y:(i+0.5)*60})
+	})
+	
+	svg.selectAll(".slider")
+		.data(sliders).enter().append(widgets.widget)
+		
+		
+}
+function example_slider_features_2(){
+
+	const w = 400, h = 80;
+	
+	const svg = d3.select("#example_slider_features_2").append("svg")
+		.attr("width", w).attr("height", h)
+	
+	const slider = widgets.slider()
+		.label("snirksen")
+		.girth(20)
+		.knob(5)
+		.size(300)
+		.labelposition("bottom-left")
+		.show(true)
+		.fontsize(20);
+	
+	svg.selectAll(".slider")
+		.data([slider]).enter().append(widgets.widget)
+		.attr("transform",function(d,i){return "translate(50,"+h/2+")"});	
+		
+}
+function example_slider_features_1(){
+
+	const w = 400, h = 50;
+	
+	const svg = d3.select("#example_slider_features_1").append("svg")
+		.attr("width", w).attr("height", h)
+	
+	const slider = widgets.slider()
+	
+	svg.selectAll(".slider")
+		.data([slider]).enter().append(widgets.widget)
+		.attr("transform",function(d,i){return "translate(50,"+h/2+")"});	
+		
+}
+function example_button_features_2(){
+
+			
+	function showvalue(d){
+		d3.select("#buttonvalue").text("Button 1: "+button1.value())	
+	}
+
+	function showaction(d){
+		d3.select("#buttonaction").text("Button 2: "+button2.actions()[button2.value()])	
+	}
+
+	const w = 400, h = 150; buttonsize = 100;
+	
+	const svg = d3.select("#example_button_features_2").append("svg")
+		.attr("width", w).attr("height", h)
+	
+	const button1 = widgets.button().actions(["play","pause"]).update(showvalue).size(buttonsize)
+
+	const button2 = widgets.button().actions(["rewind","stop","reload"]).update(showaction).size(buttonsize)
+	
+	svg.selectAll(".button").data([button1, button2]).enter().append(widgets.widget)
+		.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 2)+","+h/2+")"});
+	
+	d3.select("#example_button_features_2")
+		.append("p").attr("id","buttonvalue").text("Button 1: "+button1.value())	
+	
+	d3.select("#example_button_features_2")
+		.append("p").attr("id","buttonaction").text("Button 2: "+button2.actions()[button2.value()])	
+	
+		
+}
 function example_button_actions(){
 
 	const w = 800, h = 100;
@@ -19,7 +157,6 @@ function example_button_actions(){
 	svg.selectAll(".button").data(b).enter().append(widgets.widget)
 		.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 8)+","+h/2+")"});
 }
-
 function example_button_features_1(){
 
 	const w = 400, h = 150;
@@ -149,4 +286,3 @@ const set7 = svg.append("g")
 
 set7.selectAll(".radio").data([set7_radio]).enter().append(widgets.widget); 
 }
-

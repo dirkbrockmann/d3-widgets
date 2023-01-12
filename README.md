@@ -1,6 +1,8 @@
 # d3-widgets
 
-```d3-widgets.js``` helps ...
+```d3-widgets.js``` provides widgets (buttons, sliders, toggles and radioboxes) to augment your d3-visualization.
+
+> Note: A comprehensive documentation will come soon.
 
 ## Installation
 
@@ -72,17 +74,12 @@ import * as widgets from "@dirkbrockmann/d3-widgets"
 ```
 
 
-
 # Widgets
 
-## Buttons
+## Button
 
-### Shape
-### Labels
+## Slider
 
-
-## Sliders
-
-## Toggles
+## Toggle
 
 ## Radio
