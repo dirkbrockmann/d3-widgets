@@ -1,12 +1,12 @@
 {
   "name": "@dirkbrockmann/d3-widgets",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Widgets for d3 Applications and Visualizations",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dirkbrockmann/d3-widgets.git"
   },
-  "author": "Dirk Brockmann <dirk.brockmann@hu-berlin.de (https://rocs.hu-berlin.de)",
+  "author": "Dirk Brockmann (https://rocs.hu-berlin.de)",
   "main": "./dist/widgets.js",
   "module": "src/index.js",
   "keywords": [

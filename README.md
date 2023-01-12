@@ -2,14 +2,14 @@
 
 ```d3-widgets.js``` provides widgets (buttons, sliders, toggles and radioboxes) to augment your d3-visualization.
 
-> Note: A comprehensive documentation will come soon.
+> Note: A comprehensive documentation is stimm missing.... will come soon.
 
 ## Installation
 
 Install the package as a node module:
 
 ```shell
-npm install @dirkbrockmann/d3-widgets
+npm install d3-widgets
 ```
 
 or clone this repository and install:
@@ -41,7 +41,7 @@ and open `http://localhost:8080/` in the browser.
 Either load the package as a remote resource like so:
 
 ```html
-<script src="https://unpkg.com/@dirkbrockmann/d3-widgets"></script>
+<script src="https://unpkg.com/d3-widgets"></script>
 ```
 
 ```html 
@@ -70,9 +70,11 @@ Alternatively, use a local copy (`dist/d3-widgets.js`) and include it  in your `
 If you want to use it as part of your own project as a module import `@dirkbrockmann/d3-widgets` like so:
 
 ```js
-import * as widgets from "@dirkbrockmann/d3-widgets"
+import * as widgets from "d3-widgets"
 ```
 
+
+> Note: A comprehensive documentation is stimm missing.... will come soon.
 
 # Widgets
 
