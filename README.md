@@ -30,10 +30,10 @@ npm run examples
 or start
 
 ```shell
-http-server ./dist/
+http-server ./dist
 ```
 
-and open `http://localhost:8080/examples/` in the browser.
+and open `http://localhost:8080/` in the browser.
 
 
 ## Usage
