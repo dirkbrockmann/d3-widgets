@@ -1,3 +1,28 @@
+function example_grid_features(){
+	
+	const w = 600, h = 200;	
+	
+	const svg = d3.select("#example_grid_features").append("svg")
+		.attr("width", w).attr("height", h);
+	
+	const grid = widgets.grid(w, h, 18, 6);
+	const latt = grid.points();
+	
+	svg.selectAll(".grid").data(latt).enter().append("circle").attr("r",2).style("fill","black")
+		.attr("transform",function(d){ return "translate("+d.x+","+d.y+")" });
+	
+	const button = widgets.button().actions(["play","pause"]).position(grid.position(2,3))
+	const slider = widgets.slider().position(grid.position(8,2))
+	
+	const toggle_position = grid.position([10,12,14],4)	
+	console.log(toggle_position)
+	const toggles = ["a","b","c"].map((x,i)=>widgets.toggle().label(x).position(toggle_position[i]))
+		 
+	svg.selectAll(".button").data([button]).enter().append(widgets.widget)	
+	svg.selectAll(".slider").data([slider]).enter().append(widgets.widget)	
+	svg.selectAll(".toggle").data(toggles).enter().append(widgets.widget)	
+		
+}
 function example_radio_features_2(){
 	
 	const w = 600, h = 100;	

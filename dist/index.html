@@ -263,12 +263,31 @@ svg.selectAll(".radio").data([radio]).enter().append(widgets.widget);
 
 <h2>Grid</h2>
 
-<p>These are simple, two-state, or on and off switches:</p>	
+<p>You can use a provided grid ( widgets.grid() ), to place widgets on it using the position method:</p>	
 
-<div id="example_toggle_features_1123"></div>
+<div id="example_grid_features"></div>
 <p><pre>
 <code class="javascript" style="mono-blue">
-
+const w = 600, h = 200;	
+	
+const svg = d3.select("#example_grid_features").append("svg")
+	.attr("width", w).attr("height", h);
+	
+const grid = widgets.grid(w, h, 18, 6);
+const latt = grid.points();
+	
+svg.selectAll(".grid").data(latt).enter().append("circle").attr("r",2).style("fill","black")
+	.attr("transform",function(d){ return "translate("+d.x+","+d.y+")" });
+	
+const button = widgets.button().actions(["play","pause"]).position(grid.position(2,3))
+const slider = widgets.slider().position(grid.position(8,2))
+	
+const toggle_position = grid.position([10,12,14],4)	
+const toggles = ["a","b","c"].map((x,i)=>widgets.toggle().label(x).position(toggle_position[i]))
+		 
+svg.selectAll(".button").data([button]).enter().append(widgets.widget)	
+svg.selectAll(".slider").data([slider]).enter().append(widgets.widget)	
+svg.selectAll(".toggle").data(toggles).enter().append(widgets.widget)	
 </code>
 </pre></p>
 </section>
@@ -284,6 +303,7 @@ svg.selectAll(".radio").data([radio]).enter().append(widgets.widget);
 	example_toggle_features_1();
 	example_radio_features_1();
 	example_radio_features_2();
+	example_grid_features();
 </script>
 <script>hljs.highlightAll();</script>
 </body>
