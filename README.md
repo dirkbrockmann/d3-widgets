@@ -67,7 +67,7 @@ Alternatively, use a local copy (`dist/d3-widgets.js`) and include it  in your `
 </script>
 ```
 
-If you want to use it as part of your own project as a module import `@dirkbrockmann/d3-widgets` like so:
+If you want to use it as part of your own project as a module import `d3-widgets` like so:
 
 ```js
 import * as widgets from "d3-widgets"
