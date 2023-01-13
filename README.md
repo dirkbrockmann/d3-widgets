@@ -159,7 +159,7 @@ button = widgets.button()
 
 ## Slider
 
-To 
+Here's a simple slider
 
 ```javascript
 slider = widgets.button()
