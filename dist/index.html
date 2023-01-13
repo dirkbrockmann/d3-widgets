@@ -270,7 +270,7 @@ svg.selectAll(".radio").data([radio]).enter().append(widgets.widget);
 <code class="javascript" style="mono-blue">
 const w = 600, h = 200;	
 	
-const svg = d3.select("#example_grid_features").append("svg")
+const svg = d3.select("body").append("svg")
 	.attr("width", w).attr("height", h);
 	
 const grid = widgets.grid(w, h, 18, 6);
