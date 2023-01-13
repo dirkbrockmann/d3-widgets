@@ -143,7 +143,30 @@ So e.g. `button.actions(["back","forward","rewind"])` assigns the three actions 
 - `button.labelposition("top"|"bottom"|"left"|"right")` determines where a potential label is placed. Default is `"bottom"`. Without arguments returns the labelposition.
 - `button.fontsize(SIZE)` sets the fontsize of the label. The default is 12, set by an internal css. This method overrides the css. 
 
+You can set many of the properties all at once like so for example:
+
+```javascript
+button = widgets.button()
+    .actions(["play","rewind","capture"])
+    .size(100)
+    .symbolsize(0.1)
+    .label("click me")
+    .labelposition("left")
+    .shape("rect")
+    .position({x:10,y:20})
+    .fontsize(20)
+```
+
 ## Slider
+
+To 
+
+```javascript
+slider = widgets.button()
+```
+
+
+Let's assume we have created a `button` like above then: 
 
 ## Toggle
 
