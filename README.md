@@ -96,7 +96,7 @@ the following code will append an  `svg` child to the above `div` element that c
 ```html
 <script>
 const svg = d3.select("#widgetstuff").append("svg")
-    .attr("width",300)..attr("height",300)
+    .attr("width",300).attr("height",300)
 const button = widgets.button()
 svg.selectAll(".button").data([button]).enter().append(widgets.widget)
     attr("transform","translate(150,150)")
@@ -139,15 +139,9 @@ So e.g. `button.actions(["back","forward","rewind"])` assigns the three actions 
 - `button.symbolsize(SIZE)` set the size of the symbol inside the button. SIZE should be a number between 0 and 1 as it quantifies the relative size of the symbol with respect to the overall size of the button. Default is `0.3`. Without argument returns the symbolsize.
 - `button.shape("round"|"rect")`sets the shape of the button. Without argument returns the shape. Default is `round`.
 - `button.position({x:XPOS,y:YPOS})` sets the position of the button in the parent `svg` container to the point (XPOS,YPOS). Without arguments returns the position. Default is (0,0).
-- `button.label(STRING)` labels the button with a string `STRING`. Default is `null`.
-- `button.labelposition("top"|"bottom"|"left"|"right")` determines where a potential label is placed. Default is `"bottom"`.
-
-`
-widgets.button().id(SIZE)
-```
-sets the size
-
-
+- `button.label(STRING)` labels the button with a string `STRING`. Default is `null`. Without argument returns the label.
+- `button.labelposition("top"|"bottom"|"left"|"right")` determines where a potential label is placed. Default is `"bottom"`. Without arguments returns the labelposition.
+- `button.fontsize(SIZE)` sets the fontsize of the label. The default is 12, set by an internal css. This method overrides the css. 
 
 ## Slider
 
