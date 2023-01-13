@@ -40,6 +40,7 @@ export default (d,i) => {
 			.on("start drag", function(event) {
 				const x = d3.pointer(event,this)[0]
 				d.value(X.invert(x));
+				d.update();
 				base.selectAll(".handle").attr("cx", X(d.value()))
 				if(d.show()){
 					base.select(".label").text(d.label()+" = "+nf(d.value()))

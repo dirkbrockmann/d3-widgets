@@ -15,7 +15,6 @@ function example_grid_features(){
 	const slider = widgets.slider().position(grid.position(8,2))
 	
 	const toggle_position = grid.position([10,12,14],4)	
-	console.log(toggle_position)
 	const toggles = ["a","b","c"].map((x,i)=>widgets.toggle().label(x).position(toggle_position[i]))
 		 
 	svg.selectAll(".button").data([button]).enter().append(widgets.widget)	

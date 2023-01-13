@@ -44,7 +44,6 @@ export default () => {
 			girth: function(arg) { if ("undefined" === typeof arg) { return girth } else { girth = arg; return this }},
 			knob: function(arg) { if ("undefined" === typeof arg) { return knob } else { knob = arg; return this }},
 			show: function(arg) { if ("undefined" === typeof arg) { return show } else { show = arg; return this }},
-
 			position: function(arg) { if ("undefined" === typeof arg) { return position } else { position = arg; return this }},
 			x: function(arg) { if ("undefined" === typeof arg) { return position.x } else { position.x = arg; return this }},
 			y: function(arg) { if ("undefined" === typeof arg) { return position.y } else { position.y = arg; return this }},
