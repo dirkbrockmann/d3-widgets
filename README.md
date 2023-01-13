@@ -109,7 +109,10 @@ svg.selectAll(".button").data([button]).enter().append(widgets.widget)
 
 Eight different action symbols of buttons exist: _Play_, _Pause_, _Stp_, _Rewind_, _Reload_, _Back_, _Capture_, and _Forward_.
 
-`button = widgets.button()` generates a button and stores is in `button`. Typically you assign a sequence of actions when a button is made like so:
+```javascript
+button = widgets.button()
+``` 
+generates a button and stores is in `button`. Typically you assign a sequence of actions when a button is made like so:
 
 `button = widgets.button().actions(["play","pause"])` which makes a button that cycles through the actions _Play_ and _Pause_.
 
