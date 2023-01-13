@@ -114,7 +114,10 @@ button = widgets.button()
 ``` 
 generates a button and stores is in `button`. Typically you assign a sequence of actions when a button is made like so:
 
-`button = widgets.button().actions(["play","pause"])` which makes a button that cycles through the actions _Play_ and _Pause_.
+```javascript
+button = widgets.button().actions(["play","pause"])
+```
+which makes a button that cycles through the actions _Play_ and _Pause_.
 
 Let's assume we have created a `button` like above then: 
 
