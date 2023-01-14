@@ -21,7 +21,6 @@ export default () => {
 		value = 0;
 		
 		const click = function(d,i) {
-			console.log(i)
 			value=i;
  			d3.select("#radio_"+id).selectAll(".led-on")
 				.attr("class",v => v==value ? "led-on" : "led-off")
