@@ -134,21 +134,23 @@ button = widgets.button().actions(["play","pause"])
 generates a button that alternates between _Play_ and _Pause_ action symbol.
 
 `widgets.button` has the following methods, all of which can be chained and when called without argument return the corresponding value. 
-- `id(STRING)`: sets the buttons **id**. So e.g. `button.id("murse")` sets the **id** of `button` to `"murse"`. If not set, the **id** is set to a random string.
+- `id(STRING)`: sets the button's **id**. So e.g. `button.id("murse")` sets the **id** of `button` to `"murse"`. If not set, the **id** is set to a random string.
 - `actions(ARRAY)`: sets the **array of actions** that a button cycles through when clicked. So e.g. `button.actions(["play","pause","rewind","capture"])` sets the sequence to the four actions in the argument.
 - `update(FUNCTION)`: can be used to attach a function to a button that is called everytime the button is clicked, e.g. `button.update(function(){ console.log("hello") })` prints out hello everytime the button is clicked.
 - `size(FLOAT)`: sets the size of the button. E.g. `button.size(100)` sets the size to 100. Default is `50`.
 - `symbolsize(FLOAT)`: sets the size of the symbol inside the button. The argument should be between 0 and 1. E.g. `button.symbolsize(0.25)` sets the symbol to 25% of the button's size.
 - `shape("round"|"rect")`: sets the shape of the button to either rectangular or round. Default is `round`.
 - `position({x:FLOAT,y:FLOAT})`: sets the position of the button in the parent `svg` container. E.g. `button.position({x:50,y:150})` sets the position to (50,150) in the `svg` coordinate system.
+- `x(FLOAT)`: sets the x-coordinate of the button in the parent `svg` container. E.g. `button.x(50)` sets the x-coordinate to 50 in the `svg` coordinate system.
+- `y(FLOAT)`: sets the y-coordinate of the button in the parent `svg` container. E.g. `button.y(300)` sets the y-coordinate to 300 in the `svg` coordinate system.
 - `label(STRING)`: labels the button, e.g. `button.label("godle")` labels the button `godle`. Default is `null`.
 - `labelposition("top"|"bottom"|"left"|"right")`: determines where a label is placed. Default is `"bottom"`.
-- `button.fontsize(FLOAT)` sets the fontsize of the label. Default is 12.
+- `fontsize(FLOAT)` sets the fontsize of the label. Default is 12.
 
 Additionally, a button has these methods:
 
 - `value()`: returns the current state of the button between `0` and  `button.actions().length-1`. The value gets incremented everytime the button is pressed.
-- `click()`: you can also click the button in the code by calling `button.click()`.
+- `click()`: you can also click the button by calling `button.click()`.
 
 You can set many of the properties all at once by chaining, for example like this:
 
@@ -166,40 +168,49 @@ button = widgets.button()
 
 ## Slider
 
-Here's a simple slider
+A slider is created like this:
 
 ```javascript
-slider = widgets.button()
+slider = widgets.slider()
 ```
-
-- `slider.id(STRING)` provides `slider` with a **id**. E.g. `slider.id("vonst")` assigns the slider the id `"vonst"`.  By default (when a slider is made) the id is a random string. Without argument `ìd()` returns the sliders's id.
-- `slider.range([X0,X1])` sets the numerical range if the slider. By default the range is `[0,1]`. Without arguments, returns the current range.
-- `slider.value()` returns the value corresponding to the current slider setting.
-- `slider.update(FUNCTION)` assigns a function that is called every time the slider is moved. E.g.
+- `id(STRING)`: sets the slider's id. So e.g. `slider.id("wilk")` sets the id of `slider` to `"wilk"`. If not set, the id is set to a random string.
+- `range([FLOAT,FLAT])`: sets the numerical range, so e.g. `slider.range([-3,5.5])` sets the range to `[-3,5.5]`. By default the range is `[0,1]`. 
+- `update(FUNCTION)`: can be used to attach a function to a slider that is called everytime the slider is dragged, e.g. 
     ```javascript
     s = widgets.slider().update(()=>{console.log(s.value())})
     ```
     prints out the value of the slider.
-- `slider.set(VALUE)` sets the slider to `VALUE` which must be in the valid range.
-- `slider.size(SIZE)` sets the length of the slider to `SIZE`. Default is `100`. Without argument returns the length of the slider.
-- `slider.girth(SIZE)` sets the width of the slider to `SIZE`. Default is `8`. Without arg
-			label: function(arg) { if ("undefined" === typeof arg) { return label } else { label = arg; return this }},			
-			css: function(arg) { if ("undefined" === typeof arg) { return css } else { css = arg; return this }},			
-			size: function(arg) { if ("undefined" === typeof arg) { return size } else { size = arg; return this }},
-			girth: function(arg) { if ("undefined" === typeof arg) { return girth } else { girth = arg; return this }},
-			knob: function(arg) { if ("undefined" === typeof arg) { return knob } else { knob = arg; return this }},
-			show: function(arg) { if ("undefined" === typeof arg) { return show } else { show = arg; return this }},
-			position: function(arg) { if ("undefined" === typeof arg) { return position } else { position = arg; return this }},
-			x: function(arg) { if ("undefined" === typeof arg) { return position.x } else { position.x = arg; return this }},
-			y: function(arg) { if ("undefined" === typeof arg) { return position.y } else { position.y = arg; return this }},
-			labelposition: function(arg) { if ("undefined" === typeof arg) { return labelposition } else { labelposition = arg; return this }},
-			fontsize: function(arg) { if ("undefined" === typeof arg) { return fontsize } else { fontsize = arg; return this }},
-			update: function(arg) { if ("function" === typeof arg) {update = arg; return this} else { update(arg) }},
-			range: function(arg) { if ("undefined" === typeof arg) { return range } else { range = arg; return this }},
-			value: function(arg) { if ("undefined" === typeof arg) { return value } else { value = arg; return this }},
-			set:set
+- `set(FLOAT):` sets the slider to a specified value in the range of the slider, e.g. `slider.set(0.3)` sets the slider value to `0.3`.
+- `size(FLOAT)`: sets the slider's length. So e.g. `slider.size(300)` sets the size to `300`. Default is `100`.
+- `girth(FLOAT)`: sets the slider's width. So e.g. `slider.girth(20)` sets the width to `20`. Default is `8`. 
+- `knob(FLOAT)`: sets the slider's knob's size. So e.g. `slider.knob(4)` sets the knobsize to `4`. Default is `8`. 
+- `label(STRING)`: labels the slider. So e.g. `slider.label("stroink") labels the slider to `"stroink"`. Default is `""` (empty string).
+- `show(true|false)`: if `true` shows the value of the slider. Default is `false`.
+- `position({x:FLOAT,y:FLOAT})`: sets the position of the slider in the parent `svg` container.
+- E.g. `button.position({x:50,y:150})` sets the position to (50,150) in the `svg` coordinate system. The anchor of the slider is on the left corner.
+- `x(FLOAT)`: sets the x-coordinate of the slider in the parent `svg` container. E.g. `slider.x(50)` sets the x-coordinate to 50 in the `svg` coordinate system.
+- `y(FLOAT)`: sets the y-coordinate of the slider in the parent `svg` container. E.g. `slider.y(300)` sets the y-coordinate to 300 in the `svg` coordinate system. 
+- labelposition(STRING): sets the position of the label with respect to the slider. If the string contains `"top"` or `"bottom"`, the label is place above or below the slider, respectively. When it contains `"center"`, or `"left"` or `"right"` the label is horizontally placed accordingly. So e.g. `slider.labelposition("top-left")` place the label above and aligned on the left. Default is `"top-left"`.
+- `fontsize(FLOAT)` sets the fontsize of the label. Default is 12.
 
-Let's assume we have created a `button` like above then: 
+- `value()`: returns the current value of the slider
+
+You can set many of the properties all at once by chaining, for example like this:
+
+```javascript
+slider = widgets.slider()
+    .range([-3,4])
+    .size(300)
+    .girth(20)
+    .knob(10)
+    .label("slide me")
+    .labelposition("center-bottom")
+    .x(10)
+    y.(20)
+    .fontsize(30)
+    .show(true)
+```
+
 
 ## Toggle
 
