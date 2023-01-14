@@ -230,16 +230,17 @@ The state of the toggle is either `true` or `false`.
     ```javascript
     s = widgets.toggle().update(()=>{console.log(s.value())})
     ```
-- `size()`: sets the size of the switch, so e.g. `toggle.size(50)` makes switch of size `50`. Default is `10`
+- `size(FLOAT)`: sets the size of the switch, so e.g. `toggle.size(50)` makes switch of size `50`. Default is `10`
 - `position({x:FLOAT,y:FLOAT})`: sets the position of the switch in the parent `svg` container. E.g. `toggle.position({x:50,y:150})` sets the position to (50,150) in the `svg` coordinate system. The anchor of the toggle is on the left corner.
 - `x(FLOAT)`: sets the x-coordinate of the toggle in the parent `svg` container. E.g. `slider.x(50)` sets the x-coordinate to 50 in the `svg` coordinate system.
 - `y(FLOAT)`: sets the y-coordinate of the toggle in the parent `svg` container. E.g. `slider.y(300)` sets the y-coordinate to 300 in the `svg` coordinate system. 
 - `label(STRING)`: labels the toggle. So e.g. `toggle.label("rilly") labels the slider to `"rilly"`. Default is `""` (empty string).
 - `labelposition("top"|"bottom"|"left"|"right")`: determines where a label is placed. Default is `"bottom"`.
-- `fontsize(FLOAT)` sets the fontsize of the label. Default is 12.
+- `fontsize(FLOAT)`: sets the fontsize of the label. Default is 12.
 - `value()`: returns the current state of the toggle, either `true` or `false`
 - `click()`: you can also click the toggle by calling `button.click()` and switch it.
 
+You can set many of the properties all at once by chaining, as desribed for the slider and button widgets.
 
 ## Radio
 
@@ -253,6 +254,7 @@ generates a radio box with three buttons, labeled `"apples"`, `"oranges"`, and `
 `widgets.radio` has the following methods, all of which can be chained and when called without argument return the corresponding value. 
 
 - `id(STRING)`: sets the radiobox's id. So e.g. `radio.id("quillo")` sets the id of `radio` to `"quillo"`. If not set, the id is set to a random string.
+- `choices(ARRAY)`: sets the choices for the radiobox, e.g. `radio.choices(["apples","oranges","banana"])` sets the choices the elements in the array and sets the number of choices to 3.
 - `update(FUNCTION)`: can be used to attach a function to the radiobox that is called everytime a choice is made. E.g. this 
     ```javascript
     s = widgets.radio().choices(["banana","apple"])
@@ -262,14 +264,36 @@ generates a radio box with three buttons, labeled `"apples"`, `"oranges"`, and `
 - `size()`: sets the size of the row of buttons in the box, so e.g. `radio.size(250)` arranges the buttons in a row of size `250`. Default is `100`. Note: This is not the size of the buttons.	- `buttonsize()`: sets the size of the buttons in the box, so e.g. `radio.buttonsize(25)` sets the size of the buttons to `25`. Default is `20`.
 - `buttonpadding()`: sets the relative size of the padding of the button with respect to the size of the button. This should be a number between 0 and 1, so e.g. `radio.buttonpadding(0.1)` sets the padding of the buttons to 10%. Default is `0.3`.
 - `orientation("vertical"|"horizonal")`: determines whether radio buttons are arranged horizontally or vertically. So `radio.orientation("horizontal")` arranges buttons in a row. Default is `"vertical"`.
-			shape: function(arg) { if ("undefined" === typeof arg) { return shape } else { shape = arg; return this }},
-			position: function(arg) { if ("undefined" === typeof arg) { return position } else { position = arg; return this }},
-			x: function(arg) { if ("undefined" === typeof arg) { return position.x } else { position.x = arg; return this }},
-			y: function(arg) { if ("undefined" === typeof arg) { return position.y } else { position.y = arg; return this }},
-			labelposition: function(arg) { if ("undefined" === typeof arg) { return labelposition } else { labelposition = arg; return this }},
-			fontsize: function(arg) { if ("undefined" === typeof arg) { return fontsize } else { fontsize = arg; return this }},
-			update: function(arg) { if ("function" === typeof arg) {update = arg; return this} else { update(arg) }},
-			choices: function(arg) { if ("undefined" === typeof arg) { return choices } else { choices = arg; return this }},
-			value: function(arg) { if ("undefined" === typeof arg) { return value } else { value = arg; return this }},
-			click:click
+- `shape("round"|"rect")`: sets the shape of the buttons in the box to either rectangular or round. Default is `round`.
+- `position({x:FLOAT,y:FLOAT})`: sets the position of the radiobox in the parent `svg` container. E.g. `radio.position({x:50,y:150})` sets the position to (50,150) in the `svg` coordinate system. The anchor of the radiobox is on the left corner.
+- `x(FLOAT)`: sets the x-coordinate of the radiobox in the parent `svg` container. E.g. `radior.x(50)` sets the x-coordinate to 50 in the `svg` coordinate system.
+- `y(FLOAT)`: sets the y-coordinate of the radiobox in the parent `svg` container. E.g. `radio.y(300)` sets the y-coordinate to 300 in the `svg` coordinate system. 
+- `labelposition("top"|"bottom"|"left"|"right")`: determines where a label is placed. Default is `"bottom"`.
+- `fontsize(FLOAT)`: sets the fontsize of the label. Default is 12.
+- `value()`: returns the current state of the radiobox, i.e. the index of the selected choice.
+- `click()`: you can also click one of the radio buttons by calling `button.click()` and switch it.
+
+You can set many of the properties all at once by chaining, as desribed for the slider and button widgets.
+## Grid
+
+`widgets` also provides a `grid`function that can help placing the widgets on a lattice laid over the `svg` container where widgets are arranged.
+
+```javascript
+    const w = 400, h = 600;
+    const Nx = 8, Ny = 16;
+    svg = d3.select("body").append("svg").attr("width",w).attr("height",h);
+    g = widgets.grid(w,h,Nx,Ny);
+    svg.selectAll(".grid").data(g.points).enter().append("circle").attr("r",2)
+        .attr("transform",d=>"translate("+d.x+","+d.y+)")
+        .style("fill","black")
+```
+This will draw an equidistance coarse lattive in the parent `svg``
+
+Methods:
+
+- `grid.points`: are the points defining the grid. Each point is an object with `x` and `y` property.
+- `grid.position()`: When called like `grid.position([1,2,3],5) returns a row of points in the grid at point x = 1,2,3 and y = 5.
+
+
+
 
