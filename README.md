@@ -134,6 +134,8 @@ button = widgets.button().actions(["play","pause"])
 generates a button that alternates between _Play_ and _Pause_ action symbol.
 
 `widgets.button` has the following methods, all of which can be chained and when called without argument return the corresponding value. 
+
+
 - `id(STRING)`: sets the button's **id**. So e.g. `button.id("murse")` sets the **id** of `button` to `"murse"`. If not set, the **id** is set to a random string.
 - `actions(ARRAY)`: sets the **array of actions** that a button cycles through when clicked. So e.g. `button.actions(["play","pause","rewind","capture"])` sets the sequence to the four actions in the argument.
 - `update(FUNCTION)`: can be used to attach a function to a button that is called everytime the button is clicked, e.g. `button.update(function(){ console.log("hello") })` prints out hello everytime the button is clicked.
@@ -146,10 +148,7 @@ generates a button that alternates between _Play_ and _Pause_ action symbol.
 - `label(STRING)`: labels the button, e.g. `button.label("godle")` labels the button `godle`. Default is `null`.
 - `labelposition("top"|"bottom"|"left"|"right")`: determines where a label is placed. Default is `"bottom"`.
 - `fontsize(FLOAT)` sets the fontsize of the label. Default is 12.
-
-Additionally, a button has these methods:
-
-- `value()`: returns the current state of the button between `0` and  `button.actions().length-1`. The value gets incremented everytime the button is pressed.
+- `value()`: returns the current state of the button between `0` and  `button.actions().length-1`, so like `button.value()`. The value gets incremented every time the button is pressed.
 - `click()`: you can also click the button by calling `button.click()`.
 
 You can set many of the properties all at once by chaining, for example like this:
@@ -173,6 +172,9 @@ A slider is created like this:
 ```javascript
 slider = widgets.slider()
 ```
+
+`widgets.slider` has the following methods, all of which can be chained and when called without argument return the corresponding value. 
+
 - `id(STRING)`: sets the slider's id. So e.g. `slider.id("wilk")` sets the id of `slider` to `"wilk"`. If not set, the id is set to a random string.
 - `range([FLOAT,FLAT])`: sets the numerical range, so e.g. `slider.range([-3,5.5])` sets the range to `[-3,5.5]`. By default the range is `[0,1]`. 
 - `update(FUNCTION)`: can be used to attach a function to a slider that is called everytime the slider is dragged, e.g. 
@@ -192,8 +194,7 @@ slider = widgets.slider()
 - `y(FLOAT)`: sets the y-coordinate of the slider in the parent `svg` container. E.g. `slider.y(300)` sets the y-coordinate to 300 in the `svg` coordinate system. 
 - labelposition(STRING): sets the position of the label with respect to the slider. If the string contains `"top"` or `"bottom"`, the label is place above or below the slider, respectively. When it contains `"center"`, or `"left"` or `"right"` the label is horizontally placed accordingly. So e.g. `slider.labelposition("top-left")` place the label above and aligned on the left. Default is `"top-left"`.
 - `fontsize(FLOAT)` sets the fontsize of the label. Default is 12.
-
-- `value()`: returns the current value of the slider
+- `value()`: returns the current value of the slider.
 
 You can set many of the properties all at once by chaining, for example like this:
 
@@ -213,5 +214,31 @@ slider = widgets.slider()
 
 
 ## Toggle
+
+A toggle a simple ON/OFF switsch is created like this:
+
+```javascript
+toggle = widgets.toggle()
+```
+
+The state of the toggle is either `true` or `false`.
+
+`widgets.toggle` has the following methods, all of which can be chained and when called without argument return the corresponding value. 
+
+- `id(STRING)`: sets the toggles's id. So e.g. `toggle.id("swutch")` sets the id of `toggle` to `"swutch"`. If not set, the id is set to a random string.
+- `update(FUNCTION)`: can be used to attach a function to a toggle that is called everytime the toggle is switched.
+    ```javascript
+    s = widgets.toggle().update(()=>{console.log(s.value())})
+    ```
+- `size()`: sets the size of the switch, so e.g. `toggle.size(50)` makes switch of size `50`. Default is `10`
+- `position({x:FLOAT,y:FLOAT})`: sets the position of the switch in the parent `svg` container. E.g. `toggle.position({x:50,y:150})` sets the position to (50,150) in the `svg` coordinate system. The anchor of the toggle is on the left corner.
+- `x(FLOAT)`: sets the x-coordinate of the toggle in the parent `svg` container. E.g. `slider.x(50)` sets the x-coordinate to 50 in the `svg` coordinate system.
+- `y(FLOAT)`: sets the y-coordinate of the toggle in the parent `svg` container. E.g. `slider.y(300)` sets the y-coordinate to 300 in the `svg` coordinate system. 
+- `label(STRING)`: labels the toggle. So e.g. `toggle.label("rilly") labels the slider to `"rilly"`. Default is `""` (empty string).
+- `labelposition("top"|"bottom"|"left"|"right")`: determines where a label is placed. Default is `"bottom"`.
+- `fontsize(FLOAT)` sets the fontsize of the label. Default is 12.
+- `value()`: returns the current state of the toggle, either `true` or `false`
+- `click()`: you can also click the toggle by calling `button.click()` and switch it.
+
 
 ## Radio
