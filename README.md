@@ -242,3 +242,34 @@ The state of the toggle is either `true` or `false`.
 
 
 ## Radio
+
+The radio widget provides a set of mutually exclusive choice buttons: 
+
+```javascript
+radio = widgets.radio().choices(["apples","oranges","atomic bomb"])
+```
+generates a radio box with three buttons, labeled `"apples"`, `"oranges"`, and `"atomic bomb"` respectively. Unlike the other widgets, labels are required for the radio widget.
+
+`widgets.radio` has the following methods, all of which can be chained and when called without argument return the corresponding value. 
+
+- `id(STRING)`: sets the radiobox's id. So e.g. `radio.id("quillo")` sets the id of `radio` to `"quillo"`. If not set, the id is set to a random string.
+- `update(FUNCTION)`: can be used to attach a function to the radiobox that is called everytime a choice is made. E.g. this 
+    ```javascript
+    s = widgets.radio().choices(["banana","apple"])
+        .update(()=>{console.log(s.choices[s.value()])})
+    ```
+    prints out the choice made.
+- `size()`: sets the size of the row of buttons in the box, so e.g. `radio.size(250)` arranges the buttons in a row of size `250`. Default is `100`. Note: This is not the size of the buttons.	- `buttonsize()`: sets the size of the buttons in the box, so e.g. `radio.buttonsize(25)` sets the size of the buttons to `25`. Default is `20`.
+- `buttonpadding()`: sets the relative size of the padding of the button with respect to the size of the button. This should be a number between 0 and 1, so e.g. `radio.buttonpadding(0.1)` sets the padding of the buttons to 10%. Default is `0.3`.
+- `orientation("vertical"|"horizonal")`: determines whether radio buttons are arranged horizontally or vertically. So `radio.orientation("horizontal")` arranges buttons in a row. Default is `"vertical"`.
+			shape: function(arg) { if ("undefined" === typeof arg) { return shape } else { shape = arg; return this }},
+			position: function(arg) { if ("undefined" === typeof arg) { return position } else { position = arg; return this }},
+			x: function(arg) { if ("undefined" === typeof arg) { return position.x } else { position.x = arg; return this }},
+			y: function(arg) { if ("undefined" === typeof arg) { return position.y } else { position.y = arg; return this }},
+			labelposition: function(arg) { if ("undefined" === typeof arg) { return labelposition } else { labelposition = arg; return this }},
+			fontsize: function(arg) { if ("undefined" === typeof arg) { return fontsize } else { fontsize = arg; return this }},
+			update: function(arg) { if ("function" === typeof arg) {update = arg; return this} else { update(arg) }},
+			choices: function(arg) { if ("undefined" === typeof arg) { return choices } else { choices = arg; return this }},
+			value: function(arg) { if ("undefined" === typeof arg) { return value } else { value = arg; return this }},
+			click:click
+
