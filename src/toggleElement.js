@@ -39,7 +39,7 @@ export default (d,i) => {
 	if (lb){
 		const tp = textPosition(4*d.size(),2*d.size(),lbpos)
 		base.append("text").text(lb)
-					.attr("class", "button label")
+					.attr("class", "label")
 					.style("text-anchor",tp.anchor)
 					.style("font-size",d.fontsize())
 					.style("alignment-baseline",tp.valign)

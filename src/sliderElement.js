@@ -60,7 +60,7 @@ export default (d,i) => {
 	valign = d.labelposition().match(/bottom/i)!=null ? "hanging" : "top"
 				
 	base.append("text").text(d.show() ? d.label()+" = "+nf(d.value()) : d.label())
-		.attr("class", "slider label")
+		.attr("class", "label")
 		.style("text-anchor",anchor)
 		.style("alignment-baseline",valign)
 		.style("font-size",d.fontsize())
