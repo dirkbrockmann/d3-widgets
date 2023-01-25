@@ -52,7 +52,8 @@ export default () => {
 			update: function(arg) { if ("function" === typeof arg) {update = arg; return this} else { update(arg) }},
 			range: function(arg) { if ("undefined" === typeof arg) { return range } else { range = arg; return this }},
 			value: function(arg) { if ("undefined" === typeof arg) { return value } else { value = arg; return this }},
-			set:set
+			set:set,
+			click:set
 		}
 };	
 
