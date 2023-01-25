@@ -254,6 +254,7 @@ const set3_pos = grid.position(0,[0,2,4]);
 const set3_sliders=[1,2,3].map(x=>widgets.slider().labelposition("bottom-right")
 	.label("slider "+x).position(set3_pos[x-1]).size(530))
 
+
 const set3 = svg.append("g")
  	.attr("transform", "translate(" + set3_anchor.x + "," + set3_anchor.y + ")");
 
@@ -279,6 +280,7 @@ const set5_anchor = grid.position(8,12);
 const set5_pos = grid.position([0,5],[0,1.5,3]);
 const set5_labels = ["zulk","spronk","throck","banana hemp","olive toe","huncle"]
 const set5_toggles = [0,1,2,3,4,5].map(x=>widgets.toggle().position(set5_pos[x]).label(set5_labels[x]).labelposition("right"))
+  
  
 const set5 = svg.append("g")
   	.attr("transform", "translate(" + set5_anchor.x + "," + set5_anchor.y + ")");

@@ -23,7 +23,7 @@ export default () => {
 		
 		
 		
-		const set = function(x) {
+		const reset = function(x) {
 				const X = d3.scaleLinear().domain(range).range([0, size]).clamp(true);
 	
 		 		value = x ;
@@ -52,8 +52,8 @@ export default () => {
 			update: function(arg) { if ("function" === typeof arg) {update = arg; return this} else { update(arg) }},
 			range: function(arg) { if ("undefined" === typeof arg) { return range } else { range = arg; return this }},
 			value: function(arg) { if ("undefined" === typeof arg) { return value } else { value = arg; return this }},
-			set:set,
-			click:set
+			reset:reset,
+			click:reset
 		}
 };	
 

@@ -15,7 +15,7 @@ export default () => {
 		update = function(x) {},		
 		value = 0;
 		
-		var click = function(){
+		const click = function(){
 			value = ! value;
 			const tog = d3.select("#toggle_"+id)
 			tog.selectAll(".handle").transition()
@@ -23,6 +23,14 @@ export default () => {
 			tog.selectAll("#trackinset")
 				.attr("class",value ?  "toggle track-inset-on" : "track-inset")
 			update();
+		}
+		
+		const reset = function(value){
+			const tog = d3.select("#toggle_"+id)
+			tog.selectAll(".handle").transition()
+				.attr("cx", value ? 2*size : 0)
+			tog.selectAll("#trackinset")
+				.attr("class",value ?  "toggle track-inset-on" : "track-inset")
 		}
 				
 		return {
@@ -38,7 +46,8 @@ export default () => {
 			fontsize: function(arg) { if ("undefined" === typeof arg) { return fontsize } else { fontsize = arg; return this }},
 			update: function(arg) { if ("function" === typeof arg) {update = arg; return this} else { update(arg) }},
 			value: function(arg) { if ("undefined" === typeof arg) { return value } else { value = arg; return this }},
-			click:click
+			click: click,
+			reset:reset
 		}
 };	
 

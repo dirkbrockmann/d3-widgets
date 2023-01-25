@@ -28,6 +28,13 @@ export default () => {
 				.attr("class",v => v==value ? "led-on" : "led-off")
 			update();
 			}
+		
+		const reset = function(value) {
+	 		d3.select("#radio_"+id).selectAll(".led-on")
+				.attr("class",v => v==value ? "led-on" : "led-off")
+	 		d3.select("#radio_"+id).selectAll(".led-off")
+				.attr("class",v => v==value ? "led-on" : "led-off")		
+		}		
 				
 		return {
 			type: type,
@@ -46,7 +53,8 @@ export default () => {
 			update: function(arg) { if ("function" === typeof arg) {update = arg; return this} else { update(arg) }},
 			choices: function(arg) { if ("undefined" === typeof arg) { return choices } else { choices = arg; return this }},
 			value: function(arg) { if ("undefined" === typeof arg) { return value } else { value = arg; return this }},
-			click:click
+			click:click,
+			reset:reset
 		}
 };	
 
