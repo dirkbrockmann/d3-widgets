@@ -29,11 +29,12 @@ export default () => {
 			update();
 			}
 		
-		const reset = function(value) {
+		const reset = function(reset_value) {
+			value = reset_value;
 	 		d3.select("#radio_"+id).selectAll(".led-on")
-				.attr("class",v => v==value ? "led-on" : "led-off")
+				.attr("class",v => v==reset_value ? "led-on" : "led-off")
 	 		d3.select("#radio_"+id).selectAll(".led-off")
-				.attr("class",v => v==value ? "led-on" : "led-off")		
+				.attr("class",v => v==reset_value ? "led-on" : "led-off")		
 		}		
 				
 		return {
