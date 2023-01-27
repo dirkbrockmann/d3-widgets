@@ -1,7 +1,6 @@
 import * as d3 from "d3";
-import * as _ from "lodash"
-//import {randomId} from "./utils.js"
-//import symbol from "./button-symbols.js"
+
+import {flatten, map} from "lodash-es"
 
 export default (w,h,Nx=12,Ny=12) => {
 
@@ -17,8 +16,8 @@ export default (w,h,Nx=12,Ny=12) => {
 	const position = function(n,m){
 		if (typeof(n)==="number") (n=[n]);
 		if (typeof(m)==="number") (m=[m]);
-		const pos = _.flatten(_.map(m,function(y){
-			return _.map(n,
+		const pos = flatten(map(m,function(y){
+			return map(n,
 					function(x){
 						return {x:X(x),y:Y(y)}
 					})
