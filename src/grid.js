@@ -1,14 +1,14 @@
-import * as d3 from "d3";
+import {scaleLinear} from "d3";
 
-import {flatten, map} from "lodash-es"
+import {flatten, map,range} from "lodash-es"
 
 export default (w,h,Nx=12,Ny=12) => {
 
-  	const X = d3.scaleLinear().domain([0,Nx]).range([0,w]);
-	const Y = d3.scaleLinear().domain([0,Ny]).range([0,h]);
+  	const X = scaleLinear().domain([0,Nx]).range([0,w]);
+	const Y = scaleLinear().domain([0,Ny]).range([0,h]);
 	
 	const points = function(){
-		return d3.range((Nx+1)*(Ny+1)).map(function(i){
+		return range((Nx+1)*(Ny+1)).map(function(i){
 			return { m:(i % (Nx+1)), n: Math.floor(i / (Nx+1)), x: X((i % (Nx+1))), y: Y(Math.floor(i / (Nx+1)))}
  		})		
 	}

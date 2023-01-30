@@ -205,8 +205,7 @@ function intropanel(){
 const w = 800;
 const h = 600;
 
-const svg = d3.select("#intro").append("svg")
-	.attr("width", w).attr("height", h)
+const svg = widgets.init("#intro",w,h);
 
 const grid = widgets.grid(w, h, 24, 24);
 const latt = grid.points();
@@ -254,11 +253,12 @@ const set3_pos = grid.position(0,[0,2,4]);
 const set3_sliders=[1,2,3].map(x=>widgets.slider().labelposition("bottom-right")
 	.label("slider "+x).position(set3_pos[x-1]).size(530))
 
-
 const set3 = svg.append("g")
  	.attr("transform", "translate(" + set3_anchor.x + "," + set3_anchor.y + ")");
 
 set3.selectAll(".slider").data(set3_sliders).enter().append(widgets.widget);
+
+set3_sliders[0].reset(0.7)
 
 // slider set 2
 
@@ -298,6 +298,7 @@ const set6 = svg.append("g")
   	.attr("transform", "translate(" + set6_pos.x + "," + set6_pos.y + ")");
 
 set6.selectAll(".radio").data([set6_radio]).enter().append(widgets.widget); 
+
 
 // radiobox 2
 

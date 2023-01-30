@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import {randomId} from "./utils.js"
 import symbol from "./button-symbols.js"
+import {svg} from "./svg.js"
 
 export default () => {
 
@@ -20,11 +21,11 @@ export default () => {
 		value = 0;
 		
 		const click = function() {
-		 		value = (value + 1) % actions.length ;
-		 		update();
-				d3.select("#button_"+id).selectAll(".symbol")
-					.attr("d",symbol( actions[ value ]) ( symbolsize*size ) )
-			}
+				 		value = (value + 1) % actions.length ;
+				 		update();
+						svg.select("#button_"+id).selectAll(".symbol")
+							.attr("d",symbol( actions[ value ]) ( symbolsize*size ) )
+					}
 				
 		return {
 			type:type,

@@ -7,5 +7,6 @@ import slider from "./slider.js"
 import toggle from "./toggle.js"
 import radio from "./radio.js"
 import widget from "./widget.js"
+import init from "./svg.js"
 
-export {button,slider,toggle,radio,widget,grid}
+export {button,slider,toggle,radio,widget,grid,init}
