@@ -205,7 +205,11 @@ function intropanel(){
 const w = 800;
 const h = 600;
 
-const svg = widgets.init("#intro",w,h);
+
+const svg = d3.select("#intro").append("svg")
+	.attr("width", w).attr("height", h)
+
+widgets.init(svg);
 
 const grid = widgets.grid(w, h, 24, 24);
 const latt = grid.points();
