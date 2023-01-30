@@ -41,7 +41,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "bugs": {
-    "url": "https://github.com/dirkbrockmann/lattices/issues"
+    "url": "https://github.com/dirkbrockmann/d3-widgets.git"
   },
-  "homepage": "https://github.com/dirkbrockmann/lattices#readme"
+  "homepage": "https://github.com/dirkbrockmann/d3-widgets.git"
 }
