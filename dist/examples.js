@@ -209,7 +209,6 @@ const h = 600;
 const svg = d3.select("#intro").append("svg")
 	.attr("width", w).attr("height", h)
 
-widgets.init(svg);
 
 const grid = widgets.grid(w, h, 24, 24);
 const latt = grid.points();
@@ -262,7 +261,7 @@ const set3 = svg.append("g")
 
 set3.selectAll(".slider").data(set3_sliders).enter().append(widgets.widget);
 
-set3_sliders[0].reset(0.7)
+set3_sliders[0].reset(svg,0.2)
 
 // slider set 2
 
@@ -291,6 +290,8 @@ const set5 = svg.append("g")
 
 set5.selectAll(".toggle").data(set5_toggles).enter().append(widgets.widget); 
 
+set5_toggles[3].reset(svg,true)
+
 // radiobox 1
 
 const set6_pos = grid.position(8,17);
@@ -303,6 +304,7 @@ const set6 = svg.append("g")
 
 set6.selectAll(".radio").data([set6_radio]).enter().append(widgets.widget); 
 
+set6_radio.reset(svg,1)
 
 // radiobox 2
 

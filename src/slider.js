@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import {randomId} from "./utils.js"
-import {svg} from "./svg.js"
+
 
 export default () => {
 	
@@ -24,7 +24,7 @@ export default () => {
 		
 		
 		
-		const reset = function(x) {
+		const reset = function(svg,x) {
 				const sl = svg.select("#slider_"+id);
 				const X = d3.scaleLinear().domain(range).range([0, size]).clamp(true);
 		 		value = x ;

@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import {randomId} from "./utils.js"
-import {svg} from "./svg.js"
+
 
 
 export default () => {
@@ -23,14 +23,14 @@ export default () => {
 		
 		const click = function(d,i) {
 					value=i;
-		 			svg.select("#radio_"+id).selectAll(".led-on")
+		 			d3.select(this.parentNode).selectAll(".led-on")
 						.attr("class",v => v==value ? "led-on" : "led-off")
-		 			svg.select("#radio_"+id).selectAll(".led-off")
+		 			d3.select(this.parentNode).selectAll(".led-off")
 						.attr("class",v => v==value ? "led-on" : "led-off")
 					update();
 					}
 		
-		const reset = function(reset_value) {
+		const reset = function(svg,reset_value) {
 					value = reset_value;
 			 		svg.select("#radio_"+id).selectAll(".led-on")
 						.attr("class",v => v==reset_value ? "led-on" : "led-off")

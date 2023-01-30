@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import {randomId} from "./utils.js"
-import {svg} from "./svg.js"
+
 
 export default () => {
 
@@ -18,7 +18,7 @@ export default () => {
 		
 		const click = function(){
 			value = ! value;
-			const tog = svg.select("#toggle_"+id)
+			const tog = d3.select(this.parentNode)
 			tog.selectAll(".handle").transition()
 				.attr("cx", value ? 2*size : 0)
 			tog.selectAll("#trackinset")
@@ -26,7 +26,7 @@ export default () => {
 			update();
 		}
 		
-		const reset = function(value){
+		const reset = function(svg,value){
 			const tog = svg.select("#toggle_"+id)
 			tog.selectAll(".handle").transition()
 				.attr("cx", value ? 2*size : 0)
