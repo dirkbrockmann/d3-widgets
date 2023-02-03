@@ -26,7 +26,8 @@ export default () => {
 			update();
 		}
 		
-		const reset = function(svg,value){
+		const reset = function(svg,v){
+			value = v;
 			const tog = svg.select("#toggle_"+id)
 			tog.selectAll(".handle").transition()
 				.attr("cx", value ? 2*size : 0)

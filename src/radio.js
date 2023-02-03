@@ -35,7 +35,8 @@ export default () => {
 			 		svg.select("#radio_"+id).selectAll(".led-on")
 						.attr("class",v => v==reset_value ? "led-on" : "led-off")
 			 		svg.select("#radio_"+id).selectAll(".led-off")
-						.attr("class",v => v==reset_value ? "led-on" : "led-off")		
+						.attr("class",v => v==reset_value ? "led-on" : "led-off")
+					update();		
 		}		
 				
 		return {

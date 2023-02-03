@@ -27,6 +27,8 @@ export default (d,i) => {
 
 	backbox.attr("class","button background")
 		.on("click", d.click )
+		.on("mouseover",function(){d3.select(this).classed("lit",true);d3.select(this.parentNode).select(".button.symbol").classed("lit",true)})
+		.on("mouseout",function(){d3.select(this).classed("lit",false);d3.select(this.parentNode).select(".button.symbol").classed("lit",false)})
 	base.append("path")
 		.attr("d",symbol( d.actions()[ d.value() ]) ( d.symbolsize()*d.size() ) )
 		.attr("class","button symbol")
