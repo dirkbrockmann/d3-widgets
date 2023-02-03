@@ -46,6 +46,9 @@ export default (d,i) => {
 					base.select(".label").text(d.label()+" = "+nf(d.value()))
 				}
 			})
+			.on("end",function(event) {
+				d.update_end();
+			})
 		);
 	
 	

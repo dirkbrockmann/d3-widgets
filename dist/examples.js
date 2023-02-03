@@ -261,6 +261,8 @@ const set3 = svg.append("g")
 
 set3.selectAll(".slider").data(set3_sliders).enter().append(widgets.widget);
 
+set3_sliders[0].update(()=>{console.log("hello")})
+set3_sliders[0].update_end(()=>{console.log("wurst")})
 set3_sliders[0].reset(svg,0.2)
 
 // slider set 2

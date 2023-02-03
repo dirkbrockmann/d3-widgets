@@ -18,6 +18,7 @@ export default () => {
 		labelposition = "top-left",
 		fontsize = null,
 		update = function(x) {},
+		update_end = function(x) {},
 		range = [0,1],
 		value = 0,
 		label = "";
@@ -29,6 +30,7 @@ export default () => {
 				const X = d3.scaleLinear().domain(range).range([0, size]).clamp(true);
 		 		value = x ;
 		 		update();
+				update_end();
 				sl.selectAll(".handle").transition().attr("cx", X(x))
 				if(show){
 					sl.select(".label").text(label+" = "+nf(value))
@@ -50,6 +52,7 @@ export default () => {
 			labelposition: function(arg) { if ("undefined" === typeof arg) { return labelposition } else { labelposition = arg; return this }},
 			fontsize: function(arg) { if ("undefined" === typeof arg) { return fontsize } else { fontsize = arg; return this }},
 			update: function(arg) { if ("function" === typeof arg) {update = arg; return this} else { update(arg) }},
+			update_end: function(arg) { if ("function" === typeof arg) {update_end = arg; return this} else { update_end(arg) }},
 			range: function(arg) { if ("undefined" === typeof arg) { return range } else { range = arg; return this }},
 			value: function(arg) { if ("undefined" === typeof arg) { return value } else { value = arg; return this }},
 			reset:reset,
