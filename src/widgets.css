@@ -9,8 +9,8 @@
 	cursor: pointer;
 }
 
-.button:hover .background {
-	fill: #eee	;
+.button.background.lit{
+	fill: #eee;
 	cursor: pointer;
 }
 
@@ -20,7 +20,7 @@
 	pointer-events: none;
 }
 
-.button:hover .symbol {
+.button.symbol.lit {
 		fill: #bbb;
 		pointer-events: none;
 }
@@ -93,11 +93,19 @@
 .radio {
 	cursor: pointer;
 }
+
+.radiobutton .background.lit {
+	fill: #bbb;
+	stroke:#000;
+	stroke-width:0.5px;
+}
+
 .radiobutton > .background {
 	fill: #ddd;
 	stroke:#000;
 	stroke-width:0.5px;
 }
+
 
 .radiobutton > .led-off {
 	pointer-events: stroke;
@@ -113,10 +121,5 @@
 	stroke-width:0.5px;
 }
 
-.radiobutton:hover .led-off,.radiobutton:hover .led-on {
-	fill: #bbb;
-	stroke:#000;
-	stroke-width:0.5px;
-}
 
 

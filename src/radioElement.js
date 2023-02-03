@@ -45,9 +45,10 @@ export default (d,i) => {
 		front = button.append("circle").attr("r",bis/2)
 	}
 
-	back.attr("class","background")	
+	back.attr("class","background").on("mouseover",function(){d3.select(this).classed("lit",true)}).on("mouseout",function(){d3.select(this).classed("lit",false)})	
 	front.attr("class",v=>v==d.value() ? "led-on" : "led-off")
 	button.on("click",d.click)
+	
 	
 	const tp = textPosition(d.buttonsize(),d.buttonsize(),lbpos)
 	

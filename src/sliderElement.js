@@ -36,10 +36,18 @@ export default (d,i) => {
 		.attr("class", "slider track-overlay")
 		.attr("x1", 0).attr("x2", size)
 		.style("stroke-width", 2*d.knob())
-		.call(d3.drag()
-			.on("start drag", function(event) {
+		.on("click",function(event) {
 				const x = d3.pointer(event,this)[0]
 				d.value(X.invert(x));
+				d.update();
+				base.selectAll(".handle").attr("cx", X(d.value()))
+				if(d.show()){
+					base.select(".label").text(d.label()+" = "+nf(d.value()))
+				}
+			})
+		.call(d3.drag()
+			.on("drag", function(event) {
+				d.value(X.invert(event.x));
 				d.update();
 				base.selectAll(".handle").attr("cx", X(d.value()))
 				if(d.show()){
@@ -49,7 +57,7 @@ export default (d,i) => {
 			.on("end",function(event) {
 				d.update_end();
 			})
-		);
+		 );
 	
 	
 	var xpos,ypos,anchor,valign="bottom";
