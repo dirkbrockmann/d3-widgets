@@ -1,4 +1,4 @@
-import * as d3 from "d3";
+import {select} from "d3";
 import {randomId} from "./utils.js"
 import symbol from "./button-symbols.js"
 
@@ -23,7 +23,7 @@ export default () => {
 		const click = function() {
 				 		value = (value + 1) % actions.length ;
 				 		update();
-						d3.select(this.parentNode).selectAll(".symbol")
+						select(this.parentNode).selectAll(".symbol")
 							.attr("d",symbol( actions[ value ]) ( symbolsize*size ) )
 					}
 				

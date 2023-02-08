@@ -1,4 +1,4 @@
-import * as d3 from "d3";
+import {select} from "d3";
 import {randomId,textPosition} from "./utils.js"
 import symbol from "./button-symbols.js"
 
@@ -10,7 +10,7 @@ export default (d,i) => {
 	 	
 	const element = document.createElementNS("http://www.w3.org/2000/svg", "g");
  	
-	const base = d3.select(element).attr("class",d.css()).attr("id", id)
+	const base = select(element).attr("class",d.css()).attr("id", id)
 		.attr("transform","translate("+d.x()+","+d.y()+")")
 	
 	var backbox ;
@@ -27,8 +27,8 @@ export default (d,i) => {
 
 	backbox.attr("class","button background")
 		.on("click", d.click )
-		.on("mouseover",function(){d3.select(this).classed("lit",true);d3.select(this.parentNode).select(".button.symbol").classed("lit",true)})
-		.on("mouseout",function(){d3.select(this).classed("lit",false);d3.select(this.parentNode).select(".button.symbol").classed("lit",false)})
+		.on("mouseover",function(){select(this).classed("lit",true);select(this.parentNode).select(".button.symbol").classed("lit",true)})
+		.on("mouseout",function(){select(this).classed("lit",false);select(this.parentNode).select(".button.symbol").classed("lit",false)})
 	base.append("path")
 		.attr("d",symbol( d.actions()[ d.value() ]) ( d.symbolsize()*d.size() ) )
 		.attr("class","button symbol")

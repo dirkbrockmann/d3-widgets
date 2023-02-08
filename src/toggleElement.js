@@ -1,4 +1,4 @@
-import * as d3 from "d3";
+import {select} from "d3";
 import {randomId,textPosition} from "./utils.js"
 
 
@@ -11,7 +11,7 @@ export default (d,i) => {
 		 	
 	const element = document.createElementNS("http://www.w3.org/2000/svg", "g");
  		
-	const base = d3.select(element).attr("class",d.css()).attr("id", id)
+	const base = select(element).attr("class",d.css()).attr("id", id)
 		.attr("transform","translate("+(d.x()-size)+","+d.y()+")")
 	
 	base.append("line")

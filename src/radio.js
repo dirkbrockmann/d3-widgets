@@ -1,4 +1,4 @@
-import * as d3 from "d3";
+import {select} from "d3";
 import {randomId} from "./utils.js"
 
 
@@ -23,9 +23,9 @@ export default () => {
 		
 		const click = function(d,i) {
 					value=i;
-		 			d3.select(this.parentNode).selectAll(".led-on")
+		 			select(this.parentNode).selectAll(".led-on")
 						.attr("class",v => v==value ? "led-on" : "led-off")
-		 			d3.select(this.parentNode).selectAll(".led-off")
+		 			select(this.parentNode).selectAll(".led-off")
 						.attr("class",v => v==value ? "led-on" : "led-off")
 					update();
 					}

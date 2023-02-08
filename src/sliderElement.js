@@ -1,9 +1,9 @@
-import * as d3 from "d3";
+import {format,scaleLinear,select,pointer,drag,max} from "d3";
 import {randomId} from "./utils.js"
 
 
 export default (d,i) => {
-	const nf = d3.format(".3f")	
+	const nf = format(".3f")	
 	const id = "slider_" + d.id();
 	const lbpos = d.labelposition();
 	const range = d.range();
@@ -12,9 +12,9 @@ export default (d,i) => {
 		 	
 	const element = document.createElementNS("http://www.w3.org/2000/svg", "g");
  	
-	const X = d3.scaleLinear().domain(range).range([0, size]).clamp(true);
+	const X = scaleLinear().domain(range).range([0, size]).clamp(true);
 	
-	const base = d3.select(element).attr("class",d.css()).attr("id", id)
+	const base = select(element).attr("class",d.css()).attr("id", id)
 		.attr("transform","translate("+d.x()+","+d.y()+")")
 	
 	base.append("line")
@@ -37,7 +37,7 @@ export default (d,i) => {
 		.attr("x1", 0).attr("x2", size)
 		.style("stroke-width", 2*d.knob())
 		.on("click",function(event) {
-				const x = d3.pointer(event,this)[0]
+				const x = pointer(event,this)[0]
 				d.value(X.invert(x));
 				d.update();
 				base.selectAll(".handle").attr("cx", X(d.value()))
@@ -45,7 +45,7 @@ export default (d,i) => {
 					base.select(".label").text(d.label()+" = "+nf(d.value()))
 				}
 			})
-		.call(d3.drag()
+		.call(drag()
 			.on("drag", function(event) {
 				d.value(X.invert(event.x));
 				d.update();
@@ -62,7 +62,7 @@ export default (d,i) => {
 	
 	var xpos,ypos,anchor,valign="bottom";
 		
-	ypos = d.labelposition().match(/bottom/i)!=null ? (d3.max([d.girth() / 2,d.knob()])) + 5 : - (d3.max([d.girth() / 2,d.knob()])) - 5;
+	ypos = d.labelposition().match(/bottom/i)!=null ? (max([d.girth() / 2,d.knob()])) + 5 : - (max([d.girth() / 2,d.knob()])) - 5;
 	
 	xpos = d.labelposition().match(/right/i)!=null ? d.size() : (d.labelposition().match(/center/i)!=null ? d.size() / 2 : 0);
 	

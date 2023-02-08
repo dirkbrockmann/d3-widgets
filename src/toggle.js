@@ -1,4 +1,4 @@
-import * as d3 from "d3";
+import {select} from "d3";
 import {randomId} from "./utils.js"
 
 
@@ -18,7 +18,7 @@ export default () => {
 		
 		const click = function(){
 			value = ! value;
-			const tog = d3.select(this.parentNode)
+			const tog = select(this.parentNode)
 			tog.selectAll(".handle").transition()
 				.attr("cx", value ? 2*size : 0)
 			tog.selectAll("#trackinset")

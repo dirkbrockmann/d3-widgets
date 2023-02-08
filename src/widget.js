@@ -1,4 +1,3 @@
-import * as d3 from "d3"
 import buttonElement from "./buttonElement.js"
 import sliderElement from "./sliderElement.js"
 import toggleElement from "./toggleElement.js"

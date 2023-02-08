@@ -1,4 +1,4 @@
-import * as d3 from "d3";
+import {range,scaleLinear,select} from "d3";
 import {randomId,textPosition} from "./utils.js"
 
 export default (d,i) => {
@@ -8,13 +8,13 @@ export default (d,i) => {
 	const bs = d.buttonsize();
 	const bis = d.buttonsize()*(1-d.buttonpadding());
 	const N = d.choices().length;
-	const n = d3.range(N);
-	const X = d3.scaleLinear().domain([0,N-1]).range([0,d.size()]);
-	const Y = d3.scaleLinear().domain([0,N-1]).range([0,d.size()]);
+	const n = range(N);
+	const X = scaleLinear().domain([0,N-1]).range([0,d.size()]);
+	const Y = scaleLinear().domain([0,N-1]).range([0,d.size()]);
 	 	
 	const element = document.createElementNS("http://www.w3.org/2000/svg", "g");
  	
-	const base = d3.select(element)
+	const base = select(element)
 		.attr("class",d.css()).attr("id", id)
 		.attr("transform","translate("+d.x()+","+d.y()+")")
 	
@@ -45,7 +45,7 @@ export default (d,i) => {
 		front = button.append("circle").attr("r",bis/2)
 	}
 
-	back.attr("class","background").on("mouseover",function(){d3.select(this).classed("lit",true)}).on("mouseout",function(){d3.select(this).classed("lit",false)})	
+	back.attr("class","background").on("mouseover",function(){select(this).classed("lit",true)}).on("mouseout",function(){select(this).classed("lit",false)})	
 	front.attr("class",v=>v==d.value() ? "led-on" : "led-off")
 	button.on("click",d.click)
 	

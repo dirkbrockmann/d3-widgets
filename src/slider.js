@@ -1,11 +1,11 @@
-import * as d3 from "d3";
+import {format,scaleLinear} from "d3";
 import {randomId} from "./utils.js"
 
 
 export default () => {
 	
 	const type = "slider";
-	const nf = d3.format(".3f");
+	const nf = format(".3f");
 	const trackBorder = 0.5;
 	
 	var id = randomId(),
@@ -27,7 +27,7 @@ export default () => {
 		
 		const reset = function(svg,x) {
 				const sl = svg.select("#slider_"+id);
-				const X = d3.scaleLinear().domain(range).range([0, size]).clamp(true);
+				const X = scaleLinear().domain(range).range([0, size]).clamp(true);
 		 		value = x ;
 		 		update();
 				update_end();
