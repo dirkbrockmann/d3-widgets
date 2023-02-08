@@ -23,15 +23,13 @@ export default () => {
 		const click = function() {
 				 		value = (value + 1) % actions.length ;
 				 		update();
-						console.log(this.parentNode)
-						console.log(this)
 						select(this.parentNode).selectAll(".symbol")
 							.attr("d",symbol( actions[ value ]) ( symbolsize*size ) )
 					}
 		const press = function(svg) {
 						value = (value + 1) % actions.length ;
 						update();
-						svg.select("#"+id).select(".symbol")
+						svg.select("#button_"+id).select(".symbol")
 						.attr("d",symbol( actions[ value ]) ( symbolsize*size ) )
 		}
 	
