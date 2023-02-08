@@ -23,9 +23,18 @@ export default () => {
 		const click = function() {
 				 		value = (value + 1) % actions.length ;
 				 		update();
+						console.log(this.parentNode)
+						console.log(this)
 						select(this.parentNode).selectAll(".symbol")
 							.attr("d",symbol( actions[ value ]) ( symbolsize*size ) )
 					}
+		const press = function(svg) {
+						value = (value + 1) % actions.length ;
+						update();
+						svg.select("#"+id).select(".symbol")
+						.attr("d",symbol( actions[ value ]) ( symbolsize*size ) )
+		}
+	
 				
 		return {
 			type:type,
@@ -43,8 +52,8 @@ export default () => {
 			update: function(arg) { if ("function" === typeof arg) {update = arg; return this} else { update(arg) }},
 			actions: function(arg) { if ("undefined" === typeof arg) { return actions } else { actions = arg; return this }},
 			value: function(arg) { if ("undefined" === typeof arg) { return value } else { value = arg; return this }},
-			click:click
-
+			click:click,
+			press:press
 		}
 };	
 

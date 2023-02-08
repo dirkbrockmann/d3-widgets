@@ -244,6 +244,7 @@ const set2_buttons = set2_actions.map(function(x, i) {
 		.labelposition("top")
 });
 
+
 const set2 = svg.append("g")
  	.attr("transform", "translate(" + set2_anchor.x + "," + set2_anchor.y + ")");
 
