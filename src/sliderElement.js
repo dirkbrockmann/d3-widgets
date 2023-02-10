@@ -61,10 +61,14 @@ export default (d,i) => {
 	
 	
 	var xpos,ypos,anchor,valign="bottom";
-		
-	ypos = d.labelposition().match(/bottom/i)!=null ? (max([d.girth() / 2,d.knob()])) + 5 : - (max([d.girth() / 2,d.knob()])) - 5;
+
+	if (d.fontsize) {			
+	 	ypos = d.labelposition().match(/bottom/i)!=null ? (max([d.girth() / 2,d.knob()])) + d.fontsize() / 2: - (max([d.girth() / 2,d.knob()])) - d.fontsize() / 2;
+	}{
+		ypos = d.labelposition().match(/bottom/i)!=null ? (max([d.girth() / 2,d.knob()])) + 7: - (max([d.girth() / 2,d.knob()])) - 7;
+	}
 	
-	xpos = d.labelposition().match(/right/i)!=null ? d.size() : (d.labelposition().match(/center/i)!=null ? d.size() / 2 : 0);
+	 xpos = d.labelposition().match(/right/i)!=null ? d.size() : (d.labelposition().match(/center/i)!=null ? d.size() / 2 : 0);
 	
 	anchor = d.labelposition().match(/right/i)!=null ? "end" : (d.labelposition().match(/center/i)!=null ? "middle" : "start")
 	
