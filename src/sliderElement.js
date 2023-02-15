@@ -9,10 +9,11 @@ export default (d,i) => {
 	const range = d.range;
 	const size = d.size();
 	const label = d.label();
+	const X = d.scale;
 		 	
 	const element = document.createElementNS("http://www.w3.org/2000/svg", "g");
  	
-	const X = scaleLinear().domain(range()).range([0, size]).clamp(true);
+	X.domain(range()).range([0, size]).clamp(true);
 	
 	const base = select(element).attr("class",d.css()).attr("id", id)
 		.attr("transform","translate("+d.x()+","+d.y()+")")

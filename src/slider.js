@@ -21,17 +21,16 @@ export default () => {
 		update_end = function(x) {},
 		range = [0,1],
 		value = 0,
-		label = "";
-		
-		
+		label = "",
+		scale = scaleLinear().domain(range).range([0, size]).clamp(true);
 		
 		const reset = function(svg,x,r=range) {
 				const sl = svg.select("#slider_"+id);
-				const X = scaleLinear().domain(r).range([0, size]).clamp(true);
+				scale.domain(r);
 		 		value = x;
 		 		update();
 				update_end();
-				sl.selectAll(".handle").transition().attr("cx", X(x))
+				sl.selectAll(".handle").transition().attr("cx", scale(x))
 				if(show){
 					sl.select(".label").text(label+" = "+nf(value))
 				}
@@ -39,6 +38,7 @@ export default () => {
 	
 		return {
 			type: type,
+			scale: scale,
 			id: function(arg) { if ("undefined" === typeof arg) { return id } else { id = arg; return this }},
 			label: function(arg) { if ("undefined" === typeof arg) { return label } else { label = arg; return this }},			
 			css: function(arg) { if ("undefined" === typeof arg) { return css } else { css = arg; return this }},			
