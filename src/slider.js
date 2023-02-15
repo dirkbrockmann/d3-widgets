@@ -25,10 +25,10 @@ export default () => {
 		
 		
 		
-		const reset = function(svg,x) {
+		const reset = function(svg,x,r=range) {
 				const sl = svg.select("#slider_"+id);
-				const X = scaleLinear().domain(range).range([0, size]).clamp(true);
-		 		value = x ;
+				const X = scaleLinear().domain(r).range([0, size]).clamp(true);
+		 		value = x;
 		 		update();
 				update_end();
 				sl.selectAll(".handle").transition().attr("cx", X(x))

@@ -255,7 +255,7 @@ set2.selectAll(".button").data(set2_buttons).enter().append(widgets.widget);
 
 const set3_anchor = grid.position(1,5);
 const set3_pos = grid.position(0,[0,2,4]);
-const set3_sliders=[1,2,3].map(x=>widgets.slider().labelposition("bottom-right")
+const set3_sliders=[1,2,3].map(x=>widgets.slider().labelposition("bottom-right").show(true)
 	.label("slider "+x).position(set3_pos[x-1]).size(530))
 
 const set3 = svg.append("g")
@@ -265,7 +265,7 @@ set3.selectAll(".slider").data(set3_sliders).enter().append(widgets.widget);
 
 set3_sliders[0].update(()=>{console.log("hello")})
 set3_sliders[0].update_end(()=>{console.log("wurst")})
-set3_sliders[0].reset(svg,0.2)
+set3_sliders[0].reset(svg,0.2,[0.1,0.3])
 
 // slider set 2
 
