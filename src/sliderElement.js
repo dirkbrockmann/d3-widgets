@@ -41,6 +41,7 @@ export default (d,i) => {
 				const x = pointer(event,this)[0]
 				d.value(X.invert(x));
 				d.update();
+				d.update_end();
 				base.selectAll(".handle").attr("cx", X(d.value()))
 				if(d.show()){
 					base.select(".label").text(d.label()+" = "+nf(d.value()))
