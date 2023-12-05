@@ -175,11 +175,12 @@ function example_button_actions(){
 		widgets.button().actions(["reload"]),
 		widgets.button().actions(["capture"]),
 		widgets.button().actions(["rewind"]),		
-		widgets.button().actions(["forward"])		
+		widgets.button().actions(["forward"]),
+		widgets.button().actions(["push"])		
 	]
 	
 	svg.selectAll(".button").data(b).enter().append(widgets.widget)
-		.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 8)+","+h/2+")"});
+		.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 9)+","+h/2+")"});
 }
 function example_button_features_1(){
 
@@ -216,8 +217,8 @@ const latt = grid.points();
 // button set 1
 
 const set1_anchor = grid.position(2, 2);
-const set1_actions = ["play", "stop", "back", "pause", "reload", "capture", "rewind", "forward"];
-const set1_pos = grid.position(d3.range(0, 2 * set1_actions.length, 2), 0);
+const set1_actions = ["play", "stop", "back", "pause", "reload", "capture", "rewind", "forward","push"];
+const set1_pos = grid.position(d3.range(-1, 2 * set1_actions.length, 2), 0);
 
 const set1_buttons = set1_actions.map(function(x, i) {
 	return widgets.button().actions([x])

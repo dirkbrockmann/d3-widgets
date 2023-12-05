@@ -2,7 +2,7 @@ import {path} from "d3-path"
 
 export default (scale=1) => {
 
-    const p = d3.path();
+    const p = path();
     const theta0 = Math.PI/10;
     const sign = +1;
     const inner_radius = scale / 2;

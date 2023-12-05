@@ -44,7 +44,8 @@ const b = [
 	widgets.button().actions(["reload"]),
 	widgets.button().actions(["capture"]),
 	widgets.button().actions(["rewind"]),		
-	widgets.button().actions(["forward"])		
+	widgets.button().actions(["forward"]),
+	widgets.button().actions(["push"])		
 ]
 	
 svg.selectAll(".button").data(b).enter().append(widgets.widget)

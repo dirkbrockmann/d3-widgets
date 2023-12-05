@@ -6,6 +6,7 @@ import reload from "./b-reload-symbol.js"
 import capture from "./b-capture-symbol.js"
 import rewind from "./b-rewind-symbol.js"
 import stp from "./b-stop-symbol.js"
+import push from "./b-push-symbol.js"
 
 export default (type) => {
 	switch (type) {
@@ -24,6 +25,8 @@ export default (type) => {
 		case "rewind": return rewind;
 		break;
 		case "stop": return stp;
-		break;				
+		break;
+		case "push": return push;
+		break;					
 	}
 }
