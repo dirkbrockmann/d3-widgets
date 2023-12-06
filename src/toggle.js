@@ -12,7 +12,7 @@ export default () => {
 		position = {x:0,y:0},
 		label = null,
 		labelposition = "top",
-		fontsize = "",
+		fontsize = 16,
 		update = function(x) {},		
 		value = 0;
 		
