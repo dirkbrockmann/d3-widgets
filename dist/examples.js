@@ -200,6 +200,7 @@ function example_button_features_1(){
 		.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 2)+","+h/2+")"});
 }
 
+var mulch = set1;
 
 function intropanel(){
 
