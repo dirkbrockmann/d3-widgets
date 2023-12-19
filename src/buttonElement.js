@@ -1,6 +1,4 @@
-import styles from './widgets.css'
-
-console.log(styles)
+import styles from './widgets.module.css'
 import {select} from "d3";
 import {randomId,textPosition} from "./utils.js"
 import symbol from "./button-symbols.js"

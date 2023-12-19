@@ -1,7 +1,7 @@
 import {select} from "d3";
 import {randomId} from "./utils.js"
 import symbol from "./button-symbols.js"
-import styles from './widgets.css'
+import styles from './widgets.module.css'
 
 export default () => {
 

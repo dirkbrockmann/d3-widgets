@@ -1,6 +1,7 @@
 import {format,scaleLinear,select,pointer,drag,max} from "d3";
 import {randomId} from "./utils.js"
-import styles from './widgets.css'
+import styles from './widgets.module.css'
+
 
 export default (d,i) => {
 	const nf = format(".3f")	

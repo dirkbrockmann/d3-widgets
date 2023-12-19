@@ -1,6 +1,7 @@
-import styles from './widgets.css'
 import {range,scaleLinear,select} from "d3";
 import {randomId,textPosition} from "./utils.js"
+import styles from './widgets.module.css'
+
 
 export default (d,i) => {
 	

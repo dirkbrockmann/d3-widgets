@@ -200,6 +200,7 @@ function example_button_features_1(){
 		.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 2)+","+h/2+")"});
 }
 
+var mulch = set1;
 
 function intropanel(){
 
@@ -228,7 +229,7 @@ const set1_buttons = set1_actions.map(function(x, i) {
 const set1 = svg.append("g")
 	.attr("transform", "translate(" + set1_anchor.x + "," + set1_anchor.y + ")");
 
-//set1.selectAll(".button").data(set1_buttons).enter().append(widgets.widget);
+set1.selectAll(".button").data(set1_buttons).enter().append(widgets.widget);
 
 // button set 2
 
