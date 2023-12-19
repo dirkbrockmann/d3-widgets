@@ -1,6 +1,6 @@
 import {format,scaleLinear} from "d3";
 import {randomId} from "./utils.js"
-
+import styles from './widgets.css'
 
 export default () => {
 	
@@ -9,7 +9,6 @@ export default () => {
 	const trackBorder = 0.5;
 	
 	var id = randomId(),
-		css = "slider",
 		size = 100,
 		girth = 8, 
 		knob = 10,
@@ -30,9 +29,9 @@ export default () => {
 		 		value = x;
 		 		update();
 				update_end();
-				sl.selectAll(".handle").transition().attr("cx", scale(x))
+				sl.selectAll(styles.handle).transition().attr("cx", scale(x))
 				if(show){
-					sl.select(".label").text(label+" = "+nf(value))
+					sl.select(styles.label).text(label+" = "+nf(value))
 				}
 			}
 	
