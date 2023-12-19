@@ -1,3 +1,4 @@
+import styles from './widgets.css'
 import {range,scaleLinear,select} from "d3";
 import {randomId,textPosition} from "./utils.js"
 
@@ -15,11 +16,11 @@ export default (d,i) => {
 	const element = document.createElementNS("http://www.w3.org/2000/svg", "g");
  	
 	const base = select(element)
-		.attr("class",d.css()).attr("id", id)
+		.attr("class",styles.radio).attr("id", id)
 		.attr("transform","translate("+d.x()+","+d.y()+")")
 	
-	const button = base.selectAll(".radiobutton").data(n).enter().append("g")
-		.attr("class","radiobutton")
+	const button = base.selectAll("."+styles.radiobutton).data(n).enter().append("g")
+		.attr("class",styles.radiobutton)
 		.attr("id",d=> "b"+d)
 		.attr("transform",x => d.orientation()=="vertical" ? "translate(0,"+Y(x)+")" : "translate("+X(x)+",0)")
 	
@@ -45,15 +46,16 @@ export default (d,i) => {
 		front = button.append("circle").attr("r",bis/2)
 	}
 
-	back.attr("class","background").on("mouseover",function(){select(this).classed("lit",true)}).on("mouseout",function(){select(this).classed("lit",false)})	
-	front.attr("class",v=>v==d.value() ? "led-on" : "led-off")
+	back.attr("class",styles.background).on("mouseover",function(){select(this)
+		.classed(styles.lit,true)}).on("mouseout",function(){select(this).classed(styles.lit,false)})	
+	front.attr("class",v=>v==d.value() ? styles.led_on : styles.led_off)
 	button.on("click",d.click)
 	
 	
 	const tp = textPosition(d.buttonsize(),d.buttonsize(),lbpos)
 	
 	button.append("text")
-		.attr("class","label")
+		.attr("class",styles.label)
 		.text(function(x,j){return d.choices()[j]})
 		.attr("alignment-baseline",tp.valign)
 		.attr("transform","translate("+(tp.x)+","+tp.y+")")

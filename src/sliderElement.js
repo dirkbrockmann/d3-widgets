@@ -1,6 +1,6 @@
 import {format,scaleLinear,select,pointer,drag,max} from "d3";
 import {randomId} from "./utils.js"
-
+import styles from './widgets.css'
 
 export default (d,i) => {
 	const nf = format(".3f")	
@@ -15,26 +15,26 @@ export default (d,i) => {
  	
 	X.domain(range()).range([0, size]).clamp(true);
 	
-	const base = select(element).attr("class",d.css()).attr("id", id)
+	const base = select(element).attr("class",styles.slider).attr("id", id)
 		.attr("transform","translate("+d.x()+","+d.y()+")")
 	
 	base.append("line")
-		.attr("class", "slider track")
+		.attr("class",styles.track)
 		.attr("x1", 0).attr("x2", size)
 		.style("stroke-width", d.girth() + 1)
 
 	base.append("line")
-		.attr("class", "slider track-inset")
+		.attr("class",styles.track_inset)
 		.attr("x1", 0).attr("x2", size)
 		.style("stroke-width", d.girth())
 	
 	base.append("circle")
-		.attr("class", "slider handle")
+		.attr("class", styles.handle)
 		.attr("r", d.knob())
 		.attr("cx", X(d.value()));
 
 	base.append("line")
-		.attr("class", "slider track-overlay")
+		.attr("class", styles.track_overlay)
 		.attr("x1", 0).attr("x2", size)
 		.style("stroke-width", 2*d.knob())
 		.on("click",function(event) {
@@ -42,18 +42,18 @@ export default (d,i) => {
 				d.value(X.invert(x));
 				d.update();
 				d.update_end();
-				base.selectAll(".handle").attr("cx", X(d.value()))
+				base.selectAll("."+styles.handle).attr("cx", X(d.value()))
 				if(d.show()){
-					base.select(".label").text(d.label()+" = "+nf(d.value()))
+					base.select("."+styles.label).text(d.label()+" = "+nf(d.value()))
 				}
 			})
 		.call(drag()
 			.on("drag", function(event) {
 				d.value(X.invert(event.x));
 				d.update();
-				base.selectAll(".handle").attr("cx", X(d.value()))
+				base.selectAll("."+styles.handle).attr("cx", X(d.value()))
 				if(d.show()){
-					base.select(".label").text(d.label()+" = "+nf(d.value()))
+					base.select("."+styles.label).text(d.label()+" = "+nf(d.value()))
 				}
 			})
 			.on("end",function(event) {
@@ -77,7 +77,7 @@ export default (d,i) => {
 	valign = d.labelposition().match(/bottom/i)!=null ? "hanging" : "top"
 				
 	base.append("text").text(d.show() ? d.label()+" = "+nf(d.value()) : d.label())
-		.attr("class", "label")
+		.attr("class", styles.label)
 		.style("text-anchor",anchor)
 		.style("alignment-baseline",valign)
 		.style("font-size",d.fontsize())

@@ -4,28 +4,28 @@
 	stroke-width:0.5px;
 }
 
-.button .background {
-	fill: #ddd;
+.button > .background {
+	fill: #ccc;
 	cursor: pointer;
 }
 
-.button.background.lit{
+.button > .background.lit{
 	fill: #eee;
 	cursor: pointer;
 }
 
-.button .symbol {
+.button > .symbol {
 	fill: #fff;
 	fill-rule:nonzero;
 	pointer-events: none;
 }
 
-.button.symbol.lit {
+.button > .symbol.lit {
 		fill: #bbb;
 		pointer-events: none;
 }
 
-.button .label, .slider .label, .toggle .label {
+.button > .label, .slider > .label, .toggle > .label {
   fill:black;
   stroke:none;
 }
@@ -34,23 +34,24 @@
 	stroke-linecap: round;
 }
 
-.slider .track {
+.slider > .track {
   stroke: #000;
   stroke-width: 4px;
 }
 
-.slider .track-inset {
-  stroke: #ddd;
+.slider > .track_inset {
+  pointer-events: none;
+  stroke: #ccc;
   stroke-width: 2px;
 }
 
-.slider .track-overlay {
-  pointer-events: stroke;
+.slider > .track_overlay {
+  pointer-events: all;
   cursor: pointer;
   stroke: transparent;
 }
 
-.slider .handle {
+.slider > .handle {
   fill: #fff;
   stroke: #000;
   stroke-opacity: 1;
@@ -62,28 +63,28 @@
 	stroke-linecap: round;
 }
 
-.toggle .track {
+.toggle > .track {
   stroke: #000;
   stroke-width: 4px;
 }
 
-.toggle .track-inset {
-  stroke: #ddd;
+.toggle > .track_inset {
+  stroke: #ccc;
   stroke-width: 2px;
 }
 
-.toggle .track-inset-on {
+.toggle > .track_inset_on {
   stroke: #000;
   stroke-width: 2px;
 }
 
-.toggle .track-overlay {
+.toggle > .track_overlay {
   pointer-events: stroke;
   cursor: pointer;
   stroke: transparent;
 }
 
-.toggle .handle {
+.toggle > .handle {
   fill: #fff;
   stroke: #000;
   stroke-width: .5px;
@@ -94,7 +95,7 @@
 	cursor: pointer;
 }
 
-.radiobutton .background.lit {
+.radiobutton > .background.lit {
 	fill: #bbb;
 	stroke:#000;
 	stroke-width:0.5px;
@@ -107,15 +108,15 @@
 }
 
 
-.radiobutton > .led-off {
-	pointer-events: stroke;
+.radiobutton > .led_off {
+	pointer-events: none;
 	fill: #fff;
 	stroke:#000;
 	stroke-width:0.5px;
 }
 
-.radiobutton > .led-on {
-	pointer-events: stroke;
+.radiobutton > .led_on {
+	pointer-events: none;
 	fill: #000;
 	stroke:#000;
 	stroke-width:0.5px;

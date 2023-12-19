@@ -1,5 +1,6 @@
 import {select} from "d3";
 import {randomId} from "./utils.js"
+import styles from './widgets.css'
 
 
 export default () => {
@@ -7,7 +8,6 @@ export default () => {
 	const type = "toggle";
 	
 	var id = randomId(),
-		css = "toggle",
 		size = 10,
 		position = {x:0,y:0},
 		label = null,
@@ -19,20 +19,20 @@ export default () => {
 		const click = function(){
 			value = ! value;
 			const tog = select(this.parentNode)
-			tog.selectAll(".handle").transition()
+			tog.selectAll("."+styles.handle).transition()
 				.attr("cx", value ? 2*size : 0)
 			tog.selectAll("#trackinset")
-				.attr("class",value ?  "toggle track-inset-on" : "track-inset")
+				.attr("class",value ?  styles.track_inset_on : styles.track_inset)
 			update();
 		}
 		
 		const reset = function(svg,v){
 			value = v;
 			const tog = svg.select("#toggle_"+id)
-			tog.selectAll(".handle").transition()
+			tog.selectAll("."+styles.handle).transition()
 				.attr("cx", value ? 2*size : 0)
 			tog.selectAll("#trackinset")
-				.attr("class",value ?  "toggle track-inset-on" : "track-inset")
+				.attr("class",value ?  styles.track_inset_on : styles.track_inset)
 		}
 				
 		return {

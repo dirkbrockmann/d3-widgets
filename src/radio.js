@@ -1,6 +1,6 @@
 import {select} from "d3";
 import {randomId} from "./utils.js"
-
+import styles from './widgets.css'
 
 
 export default () => {
@@ -8,7 +8,6 @@ export default () => {
 	const type = "radio";
 
 	var id = randomId(),
-		css = "radio",
 		size = 100,
 		buttonsize = 20,
 		buttonpadding = 0.3,
@@ -23,19 +22,19 @@ export default () => {
 		
 		const click = function(d,i) {
 					value=i;
-		 			select(this.parentNode).selectAll(".led-on")
-						.attr("class",v => v==value ? "led-on" : "led-off")
-		 			select(this.parentNode).selectAll(".led-off")
-						.attr("class",v => v==value ? "led-on" : "led-off")
+		 			select(this.parentNode).selectAll("."+styles.led_on)
+						.attr("class",v => v==value ? styles.led_on : styles.led_off)
+		 			select(this.parentNode).selectAll("."+styles.led_off)
+						.attr("class",v => v==value ? styles.led_on : styles.led_off)
 					update();
 					}
 		
 		const reset = function(svg,reset_value) {
 					value = reset_value;
-			 		svg.select("#radio_"+id).selectAll(".led-on")
-						.attr("class",v => v==reset_value ? "led-on" : "led-off")
-			 		svg.select("#radio_"+id).selectAll(".led-off")
-						.attr("class",v => v==reset_value ? "led-on" : "led-off")
+			 		svg.select("#radio_"+id).selectAll("."+styles.led_on)
+						.attr("class",v => v==reset_value ? styles.led_on : styles.led_off)
+			 		svg.select("#radio_"+id).selectAll("."+styles.led_off)
+						.attr("class",v => v==reset_value ? styles.led_on : styles.led_off)
 					update();		
 		}		
 				
