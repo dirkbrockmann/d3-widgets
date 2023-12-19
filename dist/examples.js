@@ -228,7 +228,7 @@ const set1_buttons = set1_actions.map(function(x, i) {
 const set1 = svg.append("g")
 	.attr("transform", "translate(" + set1_anchor.x + "," + set1_anchor.y + ")");
 
-set1.selectAll(".button").data(set1_buttons).enter().append(widgets.widget);
+//set1.selectAll(".button").data(set1_buttons).enter().append(widgets.widget);
 
 // button set 2
 
