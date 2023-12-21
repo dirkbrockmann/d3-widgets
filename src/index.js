@@ -1,4 +1,3 @@
-//import * as d3 from "d3"
 import grid from "./grid.js"
 import button from "./button.js"
 import slider from "./slider.js"
