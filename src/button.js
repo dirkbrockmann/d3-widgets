@@ -1,4 +1,4 @@
-import styles from './widgets.css'
+import styles from './widgets.module.css'
 import {select} from "d3";
 import {randomId} from "./utils.js"
 import symbol from "./button-symbols.js"
@@ -24,13 +24,13 @@ export default () => {
 		const click = function() {
 			value = (value + 1) % actions.length ;
 				 		update();
-						const gront = select(this.parentNode).select(".symbol")
+						const gront = select(this.parentNode).select("."+styles.symbol)
 							.attr("d",symbol( actions[ value ]) ( symbolsize*size ) )
 					}
 		const press = function(svg) {
 						value = (value + 1) % actions.length ;
 						update();
-						svg.select("#button_"+id).select(".symbol")
+						svg.select("#button_"+id).select("."+styles.symbol)
 						.attr("d",symbol( actions[ value ]) ( symbolsize*size ) )
 		}
 	
