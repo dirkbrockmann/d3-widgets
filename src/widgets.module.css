@@ -1,4 +1,36 @@
 
+.button {
+	fill:none;
+	stroke:#000;
+	stroke-width:0.5px;
+}
+
+.button > .background {
+	fill: #ccc;
+	cursor: pointer;
+}
+
+.button > .background.lit{
+	fill: #eee;
+	cursor: pointer;
+}
+
+.button > .symbol {
+	fill: #fff;
+	fill-rule:nonzero;
+	pointer-events: none;
+}
+
+.button > .symbol.lit {
+		fill: #bbb;
+		pointer-events: none;
+}
+
+.button > .label {
+  fill:black;
+  stroke:none;
+}
+
 
 .slider {
 	stroke-linecap: round;
