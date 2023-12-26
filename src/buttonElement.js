@@ -11,7 +11,7 @@ export default (d,i) => {
 	 	
 	const element = document.createElementNS("http://www.w3.org/2000/svg", "g");
  	
-	const base = select(element).attr("class",styles.button).attr("id", id)
+	const base = select(element).attr("class",styles.widget+" "+styles.button).attr("id", id)
 		.attr("transform","translate("+d.x()+","+d.y()+")")
 	
 	var backbox ;
@@ -41,6 +41,7 @@ export default (d,i) => {
 	
 	
 	if (lb){
+
 		const tp = textPosition(d.size(),d.size(),lbpos)
 			base.append("text").text(lb)
 				.attr("class", styles.label)
@@ -48,9 +49,8 @@ export default (d,i) => {
 				.style("font-size",d.fontsize())
 				.style("alignment-baseline",tp.valign)
 				.attr("transform", "translate(" + (tp.x) + "," + (tp.y) + ")")
-	
 		}
-	
+
  	return element;
 }
 

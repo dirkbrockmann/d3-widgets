@@ -2,26 +2,24 @@ import {format,scaleLinear} from "d3";
 import {randomId} from "./utils.js"
 import styles from './widgets.module.css'
 
-
 export default () => {
 	
 	const type = "slider";
 	const nf = format(".3f");
-	const trackBorder = 0.5;
 	
 	var id = randomId(),
 		size = 100,
-		girth = 8, 
+		girth = 8,
 		knob = 10,
 		show = false,		
 		position = {x:0,y:0},
 		labelposition = "top-left",
-		fontsize = 16,
+		fontsize = null,
 		update = function(x) {},
 		update_end = function(x) {},
 		range = [0,1],
 		value = 0,
-		label = "",
+		label = null,
 		scale = scaleLinear().domain(range).range([0, size]).clamp(true);
 		
 		const reset = function(svg,x,r=range) {

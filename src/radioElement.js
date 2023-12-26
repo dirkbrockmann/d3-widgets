@@ -17,7 +17,7 @@ export default (d,i) => {
 	const element = document.createElementNS("http://www.w3.org/2000/svg", "g");
  	
 	const base = select(element)
-		.attr("class",styles.radio).attr("id", id)
+		.attr("class",styles.widget+" "+styles.radio).attr("id", id)
 		.attr("transform","translate("+d.x()+","+d.y()+")")
 	
 	const button = base.selectAll("."+styles.radiobutton).data(n).enter().append("g")
@@ -47,9 +47,16 @@ export default (d,i) => {
 		front = button.append("circle").attr("r",bis/2)
 	}
 
-	back.attr("class",styles.background).on("mouseover",function(){select(this)
-		.classed(styles.lit,true)}).on("mouseout",function(){select(this).classed(styles.lit,false)})	
-	front.attr("class",v=>v==d.value() ? styles.led_on : styles.led_off)
+	back.attr("class",styles.background).on("mouseover",function(){
+			select(this).classed(styles.lit,true);
+			select(this.parentNode).select("."+styles.symbol).classed(styles.lit,true)
+		}).on("mouseout",function(){
+			select(this).classed(styles.lit,false);
+			select(this.parentNode).select("."+styles.symbol).classed(styles.lit,false)
+		})	
+	
+	front.attr("class",styles.symbol)
+	front.filter(v=>v==d.value()).classed(styles.selected,true)
 	button.on("click",d.click)
 	
 	

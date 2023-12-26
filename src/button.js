@@ -3,8 +3,6 @@ import {select} from "d3";
 import {randomId} from "./utils.js"
 import symbol from "./button-symbols.js"
 
-console.log(styles)
-
 export default () => {
 
 	const type = "button";
@@ -16,7 +14,7 @@ export default () => {
 		position = {x:0,y:0},
 		label = null,
 		labelposition = "bottom",
-		fontsize = 16,
+		fontsize = null,
 		update = function(x) {},		
 		actions = ["play"],
 		value = 0;
@@ -37,8 +35,7 @@ export default () => {
 				
 		return {
 			type:type,
-			id: function(arg) { if ("undefined" === typeof arg) { return id } else { id = arg; return this }},			
-			css: function(arg) { if ("undefined" === typeof arg) { return css } else { css = arg; return this }},			
+			id: function(arg) { if ("undefined" === typeof arg) { return id } else { id = arg; return this }},					
 			size: function(arg) { if ("undefined" === typeof arg) { return size } else { size = arg; return this }},
 			symbolsize: function(arg) { if ("undefined" === typeof arg) { return symbolsize } else { symbolsize = arg; return this }},
 			shape: function(arg) { if ("undefined" === typeof arg) { return shape } else { shape = arg; return this }},

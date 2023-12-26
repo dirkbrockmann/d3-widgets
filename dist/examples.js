@@ -1,36 +1,51 @@
+function example_slider_features_1(){
+
+	const w = 400, h = 50;
+
+	const svg = d3.select("#example_slider_features_1").append("svg")
+		.attr("width", w).attr("height", h)
+
+	const slider = widgets.slider()
+
+	svg.selectAll(".slider")
+		.data([slider]).enter().append(widgets.widget)
+		.attr("transform",function(d,i){return "translate(50,"+h/2+")"});
+
+}
+
 function example_grid_features(){
-	
-	const w = 600, h = 200;	
-	
+
+	const w = 600, h = 200;
+
 	const svg = d3.select("#example_grid_features").append("svg")
 		.attr("width", w).attr("height", h);
-	
+
 	const grid = widgets.grid(w, h, 18, 6);
 	const latt = grid.points();
-	
+
 	svg.selectAll(".grid").data(latt).enter().append("circle").attr("r",2).style("fill","black")
 		.attr("transform",function(d){ return "translate("+d.x+","+d.y+")" });
-	
+
 	const button = widgets.button().actions(["play","pause"]).position(grid.position(2,3))
 	const slider = widgets.slider().position(grid.position(8,2))
-	
-	const toggle_position = grid.position([10,12,14],4)	
+
+	const toggle_position = grid.position([10,12,14],4)
 	const toggles = ["a","b","c"].map((x,i)=>widgets.toggle().label(x).position(toggle_position[i]))
-		 
-	svg.selectAll(".button").data([button]).enter().append(widgets.widget)	
-	svg.selectAll(".slider").data([slider]).enter().append(widgets.widget)	
-	svg.selectAll(".toggle").data(toggles).enter().append(widgets.widget)	
-		
+
+	svg.selectAll(".button").data([button]).enter().append(widgets.widget)
+	svg.selectAll(".slider").data([slider]).enter().append(widgets.widget)
+	svg.selectAll(".toggle").data(toggles).enter().append(widgets.widget)
+
 }
 function example_radio_features_2(){
-	
-	const w = 600, h = 100;	
-	
+
+	const w = 600, h = 100;
+
 	const svg = d3.select("#example_radio_features_2").append("svg")
 		.attr("width", w).attr("height", h);
-	
+
 	const choices = ["topel","fruck","goint","mulk","semples"];
-	
+
 	const radio = widgets.radio()
 		.choices(choices)
 		.position({x:50,y:h/2})
@@ -41,66 +56,66 @@ function example_radio_features_2(){
 		.size(400)
 		.buttonsize(60)
 		.buttonpadding(0.7)
-	
+
 	svg.selectAll(".radio").data([radio]).enter().append(widgets.widget);
-	
+
 }
 function example_radio_features_1(){
-	
-	const w = 400, h = 150;	
-	
+
+	const w = 400, h = 150;
+
 	const svg = d3.select("#example_radio_features_1").append("svg")
 		.attr("width", w).attr("height", h);
-	
+
 	const choices = ["topel","fruck","goint","mulk"];
-	
+
 	const radio = widgets.radio().choices(choices).position({x:20,y:25})
-	
+
 	svg.selectAll(".radio").data([radio]).enter().append(widgets.widget);
-	
+
 }
 
 function example_toggle_features_1(){
-	const w = 600, h = 80;	
+	const w = 600, h = 80;
 	const svg = d3.select("#example_toggle_features_1").append("svg")
 		.attr("width", w).attr("height", h)
-	
+
 	labels = ["topel","fruck","goint","mulk"];
 	labelpos = ["left","bottom","top","right"];
-	
+
 	const toggles = labels
 		.map( (q,i) => widgets.toggle().label(q).labelposition(labelpos[i]))
-	
+
 	toggles.forEach((t,i)=>{ t.position({x:(i)* w / 4+80,y:h/2})
 	})
-	
+
 	svg.selectAll(".toggle").data(toggles).enter().append(widgets.widget)
 }
 function example_slider_features_3(){
 
 	const w = 400, h = 180;
-	
+
 	const svg = d3.select("#example_slider_features_3").append("svg")
 		.attr("width", w).attr("height", h)
-	
+
 	const sliders = ["topel","fruck","goint"].map( q => widgets.slider().label(q))
-	
+
 	sliders.forEach((s,i)=>{
 		s.position({x:50,y:(i+0.5)*60})
 	})
-	
+
 	svg.selectAll(".slider")
 		.data(sliders).enter().append(widgets.widget)
-		
-		
+
+
 }
 function example_slider_features_2(){
 
 	const w = 400, h = 80;
-	
+
 	const svg = d3.select("#example_slider_features_2").append("svg")
 		.attr("width", w).attr("height", h)
-	
+
 	const slider = widgets.slider()
 		.label("snirksen")
 		.girth(20)
@@ -109,64 +124,51 @@ function example_slider_features_2(){
 		.labelposition("bottom-left")
 		.show(true)
 		.fontsize(20);
-	
-	svg.selectAll(".slider")
-		.data([slider]).enter().append(widgets.widget)
-		.attr("transform",function(d,i){return "translate(50,"+h/2+")"});	
-		
-}
-function example_slider_features_1(){
 
-	const w = 400, h = 50;
-	
-	const svg = d3.select("#example_slider_features_1").append("svg")
-		.attr("width", w).attr("height", h)
-	
-	const slider = widgets.slider()
-	
 	svg.selectAll(".slider")
 		.data([slider]).enter().append(widgets.widget)
-		.attr("transform",function(d,i){return "translate(50,"+h/2+")"});	
-		
+		.attr("transform",function(d,i){return "translate(50,"+h/2+")"});
+
 }
+
 function example_button_features_2(){
 
-			
+
 	function showvalue(d){
-		d3.select("#buttonvalue").text("Button 1: "+button1.value())	
+		d3.select("#buttonvalue").text("Button 1: "+button1.value())
 	}
 
 	function showaction(d){
-		d3.select("#buttonaction").text("Button 2: "+button2.actions()[button2.value()])	
+		d3.select("#buttonaction").text("Button 2: "+button2.actions()[button2.value()])
 	}
 
 	const w = 400, h = 150; buttonsize = 100;
-	
+
 	const svg = d3.select("#example_button_features_2").append("svg")
 		.attr("width", w).attr("height", h)
-	
+
 	const button1 = widgets.button().actions(["play","pause"]).update(showvalue).size(buttonsize)
 
 	const button2 = widgets.button().actions(["rewind","stop","reload"]).update(showaction).size(buttonsize)
-	
+
 	svg.selectAll(".button").data([button1, button2]).enter().append(widgets.widget)
 		.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 2)+","+h/2+")"});
-	
+
 	d3.select("#example_button_features_2")
-		.append("p").attr("id","buttonvalue").text("Button 1: "+button1.value())	
-	
+		.append("p").attr("id","buttonvalue").text("Button 1: "+button1.value())
+
 	d3.select("#example_button_features_2")
-		.append("p").attr("id","buttonaction").text("Button 2: "+button2.actions()[button2.value()])	
-	
-		
+		.append("p").attr("id","buttonaction").text("Button 2: "+button2.actions()[button2.value()])
+
+
 }
 function example_button_actions(){
 
 	const w = 800, h = 100;
-	
+
 	const svg = d3.select("#example_button_actions").append("svg")
 		.attr("width", w).attr("height", h)
-	
+
 	const b = [
 		widgets.button().actions(["play"]),
 		widgets.button().actions(["stop"]),
@@ -174,33 +176,32 @@ function example_button_actions(){
 		widgets.button().actions(["pause"]),
 		widgets.button().actions(["reload"]),
 		widgets.button().actions(["capture"]),
-		widgets.button().actions(["rewind"]),		
+		widgets.button().actions(["rewind"]),
 		widgets.button().actions(["forward"]),
-		widgets.button().actions(["push"])		
+		widgets.button().actions(["push"])
 	]
-	
+
 	svg.selectAll(".button").data(b).enter().append(widgets.widget)
 		.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 9)+","+h/2+")"});
 }
 function example_button_features_1(){
 
 	const w = 400, h = 150;
-	
+
 	const svg = d3.select("#example_button_features_1").append("svg")
 		.attr("width", w).attr("height", h)
-	
+
 	const button1 = widgets.button().actions(["play","pause"])
 		.size(100).label("wonk").labelposition("top")
 
 	const button2 = widgets.button().actions(["rewind","stop","reload"])
 			.size(60).label("donk").labelposition("right").shape("rect")
 			.fontsize(30)
-	
+
 	svg.selectAll(".button").data([button1, button2]).enter().append(widgets.widget)
 		.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 2)+","+h/2+")"});
 }
 
-var mulch = set1;
 
 function intropanel(){
 
@@ -289,12 +290,12 @@ const set5_anchor = grid.position(8,12);
 const set5_pos = grid.position([0,5],[0,1.5,3]);
 const set5_labels = ["zulk","spronk","throck","banana hemp","olive toe","huncle"]
 const set5_toggles = [0,1,2,3,4,5].map(x=>widgets.toggle().position(set5_pos[x]).label(set5_labels[x]).labelposition("right"))
-  
- 
+
+
 const set5 = svg.append("g")
   	.attr("transform", "translate(" + set5_anchor.x + "," + set5_anchor.y + ")");
 
-set5.selectAll(".toggle").data(set5_toggles).enter().append(widgets.widget); 
+set5.selectAll(".toggle").data(set5_toggles).enter().append(widgets.widget);
 
 set5_toggles[3].reset(svg,true)
 
@@ -308,7 +309,7 @@ const set6_radio = widgets.radio().choices(set6_choices)
 const set6 = svg.append("g")
   	.attr("transform", "translate(" + set6_pos.x + "," + set6_pos.y + ")");
 
-set6.selectAll(".radio").data([set6_radio]).enter().append(widgets.widget); 
+set6.selectAll(".radio").data([set6_radio]).enter().append(widgets.widget);
 
 set6_radio.reset(svg,1)
 
@@ -323,5 +324,5 @@ const set7_radio = widgets.radio().choices(set7_choices).shape("rect").fontsize(
 const set7 = svg.append("g")
   	.attr("transform", "translate(" + set7_pos.x + "," + set7_pos.y + ")");
 
-set7.selectAll(".radio").data([set7_radio]).enter().append(widgets.widget); 
+set7.selectAll(".radio").data([set7_radio]).enter().append(widgets.widget);
 }

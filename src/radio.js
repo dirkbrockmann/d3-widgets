@@ -16,26 +16,22 @@ export default () => {
 		orientation = "vertical",
 		position = {x:0,y:0},
 		labelposition = "right",
-		fontsize = 16,
+		fontsize = null,
 		update = function(x) {},		
 		choices = [],
 		value = 0;
 		
 		const click = function(d,i) {
 					value=i;
-		 			select(this.parentNode).selectAll("."+styles.led_on)
-						.attr("class",v => v==value ? styles.led_on : styles.led_off)
-		 			select(this.parentNode).selectAll("."+styles.led_off)
-						.attr("class",v => v==value ? styles.led_on : styles.led_off)
+		 			select(this.parentNode).selectAll("."+styles.symbol)
+						.classed(styles.selected,v => v==value)
 					update();
 					}
 		
 		const reset = function(svg,reset_value) {
 					value = reset_value;
-			 		svg.select("#radio_"+id).selectAll("."+styles.led_on)
-						.attr("class",v => v==reset_value ? styles.led_on : styles.led_off)
-			 		svg.select("#radio_"+id).selectAll("."+styles.led_off)
-						.attr("class",v => v==reset_value ? styles.led_on : styles.led_off)
+			 		svg.select("#radio_"+id).selectAll("."+styles.symbol)
+						.classed(styles.selected,v => v==value)
 					update();		
 		}		
 				

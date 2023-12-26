@@ -1,130 +1,54 @@
-
-.button {
-	fill:none;
-	stroke:#000;
-	stroke-width:0.5px;
-}
-
-.button > .background {
+.widget {
+	stroke: rgb(150,150,150);
+	stroke-width: 1px;
+	cursor: pointer;
+	pointer-events:all;
+	stroke-opacity:1;
+	fill-opacity:1;
 	fill: #ccc;
-	cursor: pointer;
+	font-size:16px;
 }
 
-.button > .background.lit{
+.widget .label {
+    fill:black;
+    stroke:none;
+}
+
+.widget .lit{
 	fill: #eee;
-	cursor: pointer;
 }
 
-.button > .symbol {
+
+.button > .symbol, .radio > .radiobutton > .symbol {
 	fill: #fff;
 	fill-rule:nonzero;
 	pointer-events: none;
 }
 
-.button > .symbol.lit {
-		fill: #bbb;
-		pointer-events: none;
-}
-
-.button > .label {
-  fill:black;
-  stroke:none;
+.widget .symbol.selected, .toggle.selected, .widget .symbol.selected.lit{
+	fill: #000;
 }
 
 
-.slider {
-	stroke-linecap: round;
+.widget .symbol.lit {
+	fill: #bbb;
 }
 
-.slider > .track {
-  stroke: #000;
-  stroke-width: 4px;
+.slider > .track, .toggle > .track {
+	pointer-events: none;
 }
 
-.slider > .track_inset {
-  pointer-events: none;
-  stroke: #ccc;
-  stroke-width: 2px;
-}
-
-.slider > .track_overlay {
+.slider > .track_overlay, .toggle > .track_overlay {
   pointer-events: all;
   cursor: pointer;
+  fill: transparent;
   stroke: transparent;
 }
 
-.slider > .handle {
+.slider > .handle, .toggle > .handle {
   fill: #fff;
-  stroke: #000;
-  stroke-opacity: 1;
-  stroke-width: .5px;
-
 }
 
-.toggle {
-	stroke-linecap: round;
-}
 
-.toggle > .track {
-  stroke: #000;
-  stroke-width: 4px;
-}
 
-.toggle > .track_inset {
-  stroke: #ccc;
-  stroke-width: 2px;
-}
-
-.toggle > .track_inset_on {
-  stroke: #000;
-  stroke-width: 2px;
-}
-
-.toggle > .track_overlay {
-  pointer-events: stroke;
-  cursor: pointer;
-  stroke: transparent;
-}
-
-.toggle > .handle {
-  fill: #fff;
-  stroke: #000;
-  stroke-width: .5px;
-
-}
-
-.radio {
-	cursor: pointer;
-}
-
-.radiobutton > .background.lit {
-	fill: #bbb;
-	stroke:#000;
-	stroke-width:0.5px;
-}
-
-.radiobutton > .background {
-	fill: #ddd;
-	stroke:#000;
-	stroke-width:0.5px;
-}
-
-.radiobutton > .led_off {
-	pointer-events: none;
-	fill: #fff;
-	stroke:#000;
-	stroke-width:0.5px;
-}
-
-.radiobutton > .led_on {
-	pointer-events: none;
-	fill: #000;
-	stroke:#000;
-	stroke-width:0.5px;
-}
-
-.button > .label, .slider > .label, .toggle > .label, .radio > .label {
-  fill:black;
-  stroke:none;
-}
 

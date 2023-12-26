@@ -13,27 +13,23 @@ export default () => {
 		position = {x:0,y:0},
 		label = null,
 		labelposition = "top",
-		fontsize = 16,
+		fontsize = null,
 		update = function(x) {},		
 		value = 0;
 		
 		const click = function(){
 			value = ! value;
 			const tog = select(this.parentNode)
-			tog.selectAll("."+styles.handle).transition()
-				.attr("cx", value ? 2*size : 0)
-			tog.selectAll("#trackinset")
-				.attr("class",value ?  styles.track_inset_on : styles.track_inset)
+			tog.select("."+styles.handle).transition().attr("cx", value ? 2*size : 0)
+			tog.classed(styles.selected,value)
 			update();
 		}
 		
 		const reset = function(svg,v){
 			value = v;
 			const tog = svg.select("#toggle_"+id)
-			tog.selectAll("."+styles.handle).transition()
-				.attr("cx", value ? 2*size : 0)
-			tog.selectAll("#trackinset")
-				.attr("class",value ?  styles.track_inset_on : styles.track_inset)
+			tog.selectAll("."+styles.handle).transition().attr("cx", value ? 2*size : 0)
+			tog.classed(styles.selected,value )
 		}
 				
 		return {

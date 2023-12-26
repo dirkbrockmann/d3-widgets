@@ -1,6 +1,7 @@
 import {format,scaleLinear,select,pointer,drag,max} from "d3";
 import {randomId} from "./utils.js"
 import styles from './widgets.module.css'
+import track from './stadium-shape.js'
 
 
 export default (d,i) => {
@@ -11,33 +12,43 @@ export default (d,i) => {
 	const size = d.size();
 	const label = d.label();
 	const X = d.scale;
+	
+	var base;
 		 	
 	const element = document.createElementNS("http://www.w3.org/2000/svg", "g");
- 	
-	X.domain(range()).range([0, size]).clamp(true);
-	
-	const base = select(element).attr("class",styles.slider).attr("id", id)
+		
+	base = select(element).attr("class",styles.widget+" "+styles.slider).attr("id", id)
 		.attr("transform","translate("+d.x()+","+d.y()+")")
 	
-	base.append("line")
+	
+	X.domain(range()).range([0, size]).clamp(true);
+	
+	// base.append("line")
+// 		.attr("class",styles.track)
+// 		.attr("x1", 0).attr("x2", size)
+// 		.style("stroke-width", d.girth() + 1)
+//
+// 	base.append("line")
+// 		.attr("class",styles.track_inset)
+// 		.attr("x1", 0).attr("x2", size)
+// 		.style("stroke-width", d.girth())
+	
+	const overlay_width = d.knob()>d.girth() ? d.knob() : d.girth()/2;
+	
+	base.append("path")
+		.attr("d",track(d.size(),d.girth()))
 		.attr("class",styles.track)
-		.attr("x1", 0).attr("x2", size)
-		.style("stroke-width", d.girth() + 1)
-
-	base.append("line")
-		.attr("class",styles.track_inset)
-		.attr("x1", 0).attr("x2", size)
-		.style("stroke-width", d.girth())
 	
 	base.append("circle")
 		.attr("class", styles.handle)
 		.attr("r", d.knob())
 		.attr("cx", X(d.value()));
 
-	base.append("line")
+	base.append("rect")
+		.attr("width",d.size()+2*overlay_width)
+		.attr("height",2*overlay_width)
+		.attr("transform","translate("+(-overlay_width)+","+(-overlay_width)+")")
 		.attr("class", styles.track_overlay)
-		.attr("x1", 0).attr("x2", size)
-		.style("stroke-width", 2*d.knob())
 		.on("click",function(event) {
 				const x = pointer(event,this)[0]
 				d.value(X.invert(x));
@@ -84,7 +95,10 @@ export default (d,i) => {
 		.style("font-size",d.fontsize())
 		.style("opacity",1)
 		.attr("transform", "translate(" + (xpos) + "," + (ypos) + ")")
-		
- 	return element;
+	
+	
+	return element;
+	
+	
 }
 
