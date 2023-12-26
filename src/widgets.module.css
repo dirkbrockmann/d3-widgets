@@ -9,8 +9,11 @@
 	font-size:16px;
 }
 
-.widget > .title {
+.widget .title {
 	font-size:20px;
+    fill:black;
+    stroke:none;
+	text-anchor:middle;
 }
 
 .widget .label {
