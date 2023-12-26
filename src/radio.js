@@ -37,8 +37,7 @@ export default () => {
 				
 		return {
 			type: type,
-			id: function(arg) { if ("undefined" === typeof arg) { return id } else { id = arg; return this }},			
-			css: function(arg) { if ("undefined" === typeof arg) { return css } else { css = arg; return this }},			
+			id: function(arg) { if ("undefined" === typeof arg) { return id } else { id = arg; return this }},						
 			size: function(arg) { if ("undefined" === typeof arg) { return size } else { size = arg; return this }},
 			buttonsize: function(arg) { if ("undefined" === typeof arg) { return buttonsize } else { buttonsize = arg; return this }},
 			buttonpadding: function(arg) { if ("undefined" === typeof arg) { return buttonpadding } else { buttonpadding = arg; return this }},

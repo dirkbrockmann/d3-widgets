@@ -9,6 +9,10 @@
 	font-size:16px;
 }
 
+.widget > .title {
+	font-size:20px;
+}
+
 .widget .label {
     fill:black;
     stroke:none;

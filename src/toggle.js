@@ -34,8 +34,7 @@ export default () => {
 				
 		return {
 			type: type,
-			id: function(arg) { if ("undefined" === typeof arg) { return id } else { id = arg; return this }},			
-			css: function(arg) { if ("undefined" === typeof arg) { return css } else { css = arg; return this }},			
+			id: function(arg) { if ("undefined" === typeof arg) { return id } else { id = arg; return this }},						
 			size: function(arg) { if ("undefined" === typeof arg) { return size } else { size = arg; return this }},
 			position: function(arg) { if ("undefined" === typeof arg) { return position } else { position = arg; return this }},
 			x: function(arg) { if ("undefined" === typeof arg) { return position.x } else { position.x = arg; return this }},
