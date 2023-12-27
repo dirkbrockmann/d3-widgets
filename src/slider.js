@@ -28,9 +28,9 @@ export default () => {
 		 		value = x;
 		 		update();
 				update_end();
-				sl.selectAll(styles.handle).transition().attr("cx", scale(x))
+				sl.selectAll("."+styles.handle).transition().attr("cx", scale(x))
 				if(show){
-					sl.select(styles.label).text(label+" = "+nf(value))
+					sl.select("."+styles.label).text(label+" = "+nf(value))
 				}
 			}
 	

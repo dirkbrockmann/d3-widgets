@@ -289,13 +289,13 @@ set4.selectAll(".slider").data(set4_sliders).enter().append(widgets.widget);
 const set5_anchor = grid.position(8,12);
 const set5_pos = grid.position([0,5],[0,1.5,3]);
 const set5_labels = ["zulk","spronk","throck","banana hemp","olive toe","huncle"]
-const set5_toggles = [0,1,2,3,4,5].map(x=>widgets.toggle().position(set5_pos[x]).label(set5_labels[x]).labelposition("right"))
+const set5_toggles = [0,1,2,3,4,5].map(x=>widgets.toggle().position(set5_pos[x]).label(set5_labels[x]).labelposition("right").fontsize(20))
 
 
 const set5 = svg.append("g")
   	.attr("transform", "translate(" + set5_anchor.x + "," + set5_anchor.y + ")");
 
-set5.selectAll(".toggle").data(set5_toggles).enter().append(widgets.widget);
+set5.selectAll(".toggle").data(set5_toggles).enter().append(widgets.widget)
 
 set5_toggles[3].reset(svg,true)
 
