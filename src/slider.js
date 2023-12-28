@@ -26,12 +26,12 @@ export default () => {
 				const sl = svg.select("#slider_"+id);
 				scale.domain(r);
 		 		value = x;
-		 		update();
-				update_end();
 				sl.selectAll("."+styles.handle).transition().attr("cx", scale(x))
 				if(show){
 					sl.select("."+styles.label).text(label+" = "+nf(value))
 				}
+		 		update();
+				update_end();
 			}
 	
 		return {
