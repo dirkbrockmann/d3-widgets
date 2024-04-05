@@ -30,6 +30,7 @@ export default () => {
 			const tog = svg.select("#toggle_"+id)
 			tog.selectAll("."+styles.handle).transition().attr("cx", value ? 2*size : 0)
 			tog.classed(styles.selected,value )
+			update();
 		}
 				
 		return {
