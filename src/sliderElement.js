@@ -53,7 +53,7 @@ export default (d,i) => {
 				console.log(this)
 				console.log(event)
 			
-				const x = pointer(event,this)[0]
+				const x = pointer(event)[0]
 				d.value(X.invert(x));
 				d.update();
 				d.update_end();
@@ -66,7 +66,7 @@ export default (d,i) => {
 			.on("drag", function(event) {
 				console.log(this)
 				console.log(event)
-				const x = pointer(event,this)[0]
+				const x = pointer(event)[0]
 				d.value(X.invert(x));
 				d.update();
 				base.selectAll("."+styles.handle).attr("cx", X(d.value()))
