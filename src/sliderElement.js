@@ -50,6 +50,9 @@ export default (d,i) => {
 		.attr("transform","translate("+(-overlay_width)+","+(-overlay_width)+")")
 		.attr("class", styles.track_overlay)
 		.on("click",function(event) {
+				console.log(this)
+				console.log(event)
+			
 				const x = pointer(event,this)[0]
 				d.value(X.invert(x));
 				d.update();
@@ -61,6 +64,8 @@ export default (d,i) => {
 			})
 		.call(drag()
 			.on("drag", function(event) {
+				console.log(this)
+				console.log(event)
 				const x = pointer(event,this)[0]
 				d.value(X.invert(x));
 				d.update();
