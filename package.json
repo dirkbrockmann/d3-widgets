@@ -1,6 +1,6 @@
 {
   "name": "d3-widgets",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Widgets for d3 Applications and Visualizations",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "build": "webpack --mode production",
     "dev": "webpack serve --static dist/ --mode development",
     "examples": "http-server dist",
-	"pap": "git add . ; git commit -m \"$npm_package_version\"; git push; npm version patch; npm publish "
+    "pap": "git add . ; git commit -m \"$npm_package_version\"; git push; npm version patch; npm publish "
   },
   "files": [
     "dist/*.js",
