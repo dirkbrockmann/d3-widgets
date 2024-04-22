@@ -61,7 +61,8 @@ export default (d,i) => {
 			})
 		.call(drag()
 			.on("drag", function(event) {
-				d.value(X.invert(event.x));
+				const x = pointer(event,this)[0]
+				d.value(X.invert(x));
 				d.update();
 				base.selectAll("."+styles.handle).attr("cx", X(d.value()))
 				if(d.show()){
