@@ -1,0 +1,103 @@
+# d3-widgets
+
+```d3-widgets.js``` provides widgets (buttons, sliders, toggles and radioboxes) to augment your d3-visualization.
+
+> Note: A comprehensive documentation is still missing.... will come soon.
+
+## Features
+
+- Various interactive widgets for D3.js visualizations:
+  - Buttons
+  - Sliders
+  - Toggles
+  - Radio buttons
+  - Grid layout helper
+- **NEW: Dark/Light Mode Support** - Widgets automatically adapt to system theme preferences
+- **NEW: Theme Utilities** - Helper functions for theme detection and control
+
+## Installation
+
+Install the package as a node module:
+
+```shell
+npm install d3-widgets
+```
+
+or clone this repository and install:
+
+```shell
+git clone https://github.com/dirkbrockmann/d3-widgets.git
+cd d3-widgets
+npm install
+npm run build
+```
+
+View examples:
+
+```shell
+npm run dev
+```
+
+or
+
+```shell
+npm run build
+npm run preview
+```
+
+## Usage
+
+Either load the package as a remote resource like so:
+
+```html
+<script src="https://unpkg.com/d3-widgets"></script>
+```
+
+```html 
+<script>
+const a = widgets.button()
+const b = widgets.slider()
+</script>
+``` 
+
+Alternatively, use a local copy (`dist/widgets.js`) and include it in your `html`-file like so:
+
+```html
+<script src="widgets.js"></script>
+```
+
+```html
+<script>
+const b = widgets.button().size(100).shape("rect")
+</script>
+```
+
+If you want to use it as part of your own project as a module import `d3-widgets` like so:
+
+```js
+import * as widgets from "d3-widgets"
+```
+
+### Using Dark/Light Mode Features
+
+The widgets automatically adapt to the user's system preferences for dark or light mode. You can also programmatically control the theme:
+
+```javascript
+// Check current dark mode preference
+const isDark = widgets.isDarkMode();
+console.log(isDark ? "Dark mode" : "Light mode");
+
+// Watch for changes in system color scheme
+widgets.watchColorScheme(isDark => {
+  console.log(`Theme changed to: ${isDark ? "dark" : "light"}`);
+});
+
+// Manually toggle dark mode
+const isDarkNow = widgets.toggleDarkMode(); // toggle
+widgets.toggleDarkMode(true); // force dark mode
+widgets.toggleDarkMode(false); // force light mode
+```
+
+## Widgets
+
+> Note: A comprehensive documentation is still missing.... will come soon.

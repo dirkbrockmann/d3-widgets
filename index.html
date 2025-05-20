@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D3-Widgets Development</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    /* Simple light/dark mode toggle for testing */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #222;
+        color: #eee;
+      }
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      padding: 20px;
+    }
+    
+    h1 {
+      margin-bottom: 30px;
+    }
+    
+    #controls {
+      margin-bottom: 40px;
+    }
+    
+    #demo-container {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .demo-widget {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>D3-Widgets Demo</h1>
+  
+  <div id="controls">
+    <button id="toggle-theme">Toggle Light/Dark Mode</button>
+  </div>
+  
+  <div id="demo-container">
+    <div class="demo-widget">
+      <h3>Button</h3>
+      <div id="button-demo"></div>
+    </div>
+    
+    <div class="demo-widget">
+      <h3>Slider</h3>
+      <div id="slider-demo"></div>
+    </div>
+    
+    <div class="demo-widget">
+      <h3>Toggle</h3>
+      <div id="toggle-demo"></div>
+    </div>
+    
+    <div class="demo-widget">
+      <h3>Radio</h3>
+      <div id="radio-demo"></div>
+    </div>
+  </div>
+  
+  <script type="module">
+    import * as widgets from '/src/index.js';
+    
+    // Simple theme toggler
+    const toggleThemeBtn = document.getElementById('toggle-theme');
+    toggleThemeBtn.addEventListener('click', () => {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    });
+    
+    // Button demo
+    const buttonContainer = d3.select('#button-demo').append('svg')
+      .attr('width', 200)
+      .attr('height', 100);
+      
+    const myButton = widgets.button().label("Click Me").shape("rect");
+    buttonContainer.selectAll('.button').data([myButton]).enter()
+      .append(widgets.widget)
+      .attr('transform', 'translate(100, 50)');
+    
+    // Slider demo
+    const sliderContainer = d3.select('#slider-demo').append('svg')
+      .attr('width', 300)
+      .attr('height', 100);
+      
+    const mySlider = widgets.slider().range([0, 100]).initial(30);
+    sliderContainer.selectAll('.slider').data([mySlider]).enter()
+      .append(widgets.widget)
+      .attr('transform', 'translate(150, 50)');
+    
+    // Toggle demo
+    const toggleContainer = d3.select('#toggle-demo').append('svg')
+      .attr('width', 200)
+      .attr('height', 100);
+      
+    const myToggle = widgets.toggle().label("On/Off");
+    toggleContainer.selectAll('.toggle').data([myToggle]).enter()
+      .append(widgets.widget)
+      .attr('transform', 'translate(100, 50)');
+    
+    // Radio demo
+    const radioContainer = d3.select('#radio-demo').append('svg')
+      .attr('width', 300)
+      .attr('height', 200);
+      
+    const myRadio = widgets.radio().values(["Option 1", "Option 2", "Option 3"]);
+    radioContainer.selectAll('.radio').data([myRadio]).enter()
+      .append(widgets.widget)
+      .attr('transform', 'translate(150, 100)');
+  </script>
+</body>
+</html>

@@ -1,44 +1,70 @@
+:root {
+	/* Light mode (default) */
+	--widget-stroke: rgb(150,150,150);
+	--widget-fill: #ccc;
+	--widget-text: black;
+	--widget-symbol: #fff;
+	--widget-symbol-selected: #000;
+	--widget-symbol-lit: #bbb;
+	--widget-lit: #eee;
+	--widget-handle: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		/* Dark mode */
+		--widget-stroke: rgb(100,100,100);
+		--widget-fill: #444;
+		--widget-text: #e0e0e0;
+		--widget-symbol: #333;
+		--widget-symbol-selected: #e0e0e0;
+		--widget-symbol-lit: #555;
+		--widget-lit: #666;
+		--widget-handle: #888;
+	}
+}
+
 .widget {
-	stroke: rgb(150,150,150);
+	stroke: var(--widget-stroke);
 	stroke-width: 1px;
 	cursor: pointer;
-	pointer-events:all;
-	stroke-opacity:1;
-	fill-opacity:1;
-	fill: #ccc;
-	font-size:16px;
+	pointer-events: all;
+	stroke-opacity: 1;
+	fill-opacity: 1;
+	fill: var(--widget-fill);
+	font-size: 16px;
 }
 
 .widget .title {
-	font-size:20px;
-    fill:black;
-    stroke:none;
-	text-anchor:middle;
+	font-size: 20px;
+    fill: var(--widget-text);
+    stroke: none;
+	text-anchor: middle;
 }
 
 .widget .label {
-    fill:black;
-    stroke:none;
+    fill: var(--widget-text);
+    stroke: none;
 }
 
 .widget .lit{
-	fill: #eee;
+	fill: var(--widget-lit);
 }
 
 
 .button > .symbol, .radio > .radiobutton > .symbol {
-	fill: #fff;
-	fill-rule:nonzero;
+	fill: var(--widget-symbol);
+	fill-rule: nonzero;
 	pointer-events: none;
 }
 
 .widget .symbol.selected, .toggle.selected, .widget .symbol.selected.lit{
-	fill: #000;
+	fill: var(--widget-symbol-selected);
 }
 
 
 .widget .symbol.lit {
-	fill: #bbb;
+	fill: var(--widget-symbol-lit);
 }
 
 .slider > .track, .toggle > .track {
@@ -53,7 +79,7 @@
 }
 
 .slider > .handle, .toggle > .handle {
-  fill: #fff;
+  fill: var(--widget-handle);
 }
 
 

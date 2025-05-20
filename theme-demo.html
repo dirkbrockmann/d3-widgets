@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D3-Widgets Theme Demo</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      padding: 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    /* Dark mode styles */
+    body.dark {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      margin-bottom: 30px;
+    }
+    
+    .controls {
+      margin-bottom: 30px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    
+    button {
+      padding: 10px 15px;
+      background: #0078d7;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    button:hover {
+      background: #0063b1;
+    }
+    
+    .widget-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    
+    .widget-demo {
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #f5f5f5;
+      transition: background-color 0.3s ease;
+    }
+    
+    body.dark .widget-demo {
+      background-color: #1e1e1e;
+    }
+    
+    .widget-title {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    
+    .demo-svg {
+      width: 100%;
+      height: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>D3-Widgets with Dark/Light Mode Support</h1>
+    
+    <div class="controls">
+      <button id="toggle-light">Light Mode</button>
+      <button id="toggle-dark">Dark Mode</button>
+      <button id="toggle-system">System Preference</button>
+      <span id="current-theme">Current theme: System Preference</span>
+    </div>
+    
+    <div class="widget-container">
+      <div class="widget-demo">
+        <h3 class="widget-title">Button</h3>
+        <svg id="button-demo" class="demo-svg"></svg>
+      </div>
+      
+      <div class="widget-demo">
+        <h3 class="widget-title">Slider</h3>
+        <svg id="slider-demo" class="demo-svg"></svg>
+      </div>
+      
+      <div class="widget-demo">
+        <h3 class="widget-title">Toggle</h3>
+        <svg id="toggle-demo" class="demo-svg"></svg>
+      </div>
+      
+      <div class="widget-demo">
+        <h3 class="widget-title">Radio</h3>
+        <svg id="radio-demo" class="demo-svg"></svg>
+      </div>
+    </div>
+    
+    <h2>Code Examples</h2>
+    <pre><code>
+// Check current dark mode preference
+const isDark = widgets.isDarkMode();
+console.log(isDark ? "Dark mode" : "Light mode");
+
+// Watch for changes in system color scheme
+widgets.watchColorScheme(isDark => {
+  console.log(`Theme changed to: ${isDark ? "dark" : "light"}`);
+});
+
+// Manually toggle dark mode
+const isDarkNow = widgets.toggleDarkMode(); // toggle
+widgets.toggleDarkMode(true); // force dark mode
+widgets.toggleDarkMode(false); // force light mode
+    </code></pre>
+  </div>
+  
+  <script type="module">
+    import * as widgets from './src/index.js';
+    
+    // Theme management
+    const themeDisplay = document.getElementById('current-theme');
+    const lightBtn = document.getElementById('toggle-light');
+    const darkBtn = document.getElementById('toggle-dark');
+    const systemBtn = document.getElementById('toggle-system');
+    
+    let usingSystemPreference = true;
+    
+    // Update the theme status display
+    function updateThemeStatus() {
+      if (usingSystemPreference) {
+        themeDisplay.textContent = `Current theme: System Preference (${widgets.isDarkMode() ? 'Dark' : 'Light'})`;
+      } else {
+        themeDisplay.textContent = `Current theme: ${document.body.classList.contains('dark') ? 'Dark' : 'Light'} (Manual)`;
+      }
+    }
+    
+    lightBtn.addEventListener('click', () => {
+      usingSystemPreference = false;
+      document.body.classList.remove('dark');
+      document.documentElement.classList.remove('dark');
+      updateThemeStatus();
+    });
+    
+    darkBtn.addEventListener('click', () => {
+      usingSystemPreference = false;
+      document.body.classList.add('dark');
+      document.documentElement.classList.add('dark');
+      updateThemeStatus();
+    });
+    
+    systemBtn.addEventListener('click', () => {
+      usingSystemPreference = true;
+      const isDark = widgets.isDarkMode();
+      
+      if (isDark) {
+        document.body.classList.add('dark');
+        document.documentElement.classList.add('dark');
+      } else {
+        document.body.classList.remove('dark');
+        document.documentElement.classList.remove('dark');
+      }
+      
+      updateThemeStatus();
+    });
+    
+    // Watch for system preference changes
+    widgets.watchColorScheme(isDark => {
+      if (usingSystemPreference) {
+        if (isDark) {
+          document.body.classList.add('dark');
+          document.documentElement.classList.add('dark');
+        } else {
+          document.body.classList.remove('dark');
+          document.documentElement.classList.remove('dark');
+        }
+        updateThemeStatus();
+      }
+    });
+    
+    // Initialize with system preference
+    if (widgets.isDarkMode()) {
+      document.body.classList.add('dark');
+      document.documentElement.classList.add('dark');
+    }
+    updateThemeStatus();
+    
+    // Button demo
+    const buttonSvg = d3.select('#button-demo');
+    const myButton = widgets.button()
+      .size(70)
+      .shape('rect')
+      .label('Press me')
+      .actions(['play', 'pause'])
+      .position({x: 150, y: 75});
+    
+    buttonSvg.selectAll('.button')
+      .data([myButton])
+      .enter()
+      .append(widgets.widget);
+    
+    // Slider demo
+    const sliderSvg = d3.select('#slider-demo');
+    const mySlider = widgets.slider()
+      .range([0, 100])
+      .initial(40)
+      .position({x: 150, y: 75})
+      .width(200);
+    
+    sliderSvg.selectAll('.slider')
+      .data([mySlider])
+      .enter()
+      .append(widgets.widget);
+    
+    // Toggle demo
+    const toggleSvg = d3.select('#toggle-demo');
+    const myToggle = widgets.toggle()
+      .position({x: 150, y: 75})
+      .label('Enable Feature')
+      .width(60);
+    
+    toggleSvg.selectAll('.toggle')
+      .data([myToggle])
+      .enter()
+      .append(widgets.widget);
+    
+    // Radio demo
+    const radioSvg = d3.select('#radio-demo');
+    const myRadio = widgets.radio()
+      .values(['Option A', 'Option B', 'Option C'])
+      .position({x: 150, y: 75});
+    
+    radioSvg.selectAll('.radio')
+      .data([myRadio])
+      .enter()
+      .append(widgets.widget);
+  </script>
+</body>
+</html>
