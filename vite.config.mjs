@@ -11,7 +11,7 @@ export default defineConfig({
   build: {
 	lib: {
 	    entry: './src/main.js',
-	    name: 'd3-widgets',
+	    name: 'widgets',
 	    fileName: (format) => `index.${format}.js`, //fileName: () => 'index.js',
 	    formats: ['es','umd'] // added "es" format
 	},
