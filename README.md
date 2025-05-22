@@ -21,7 +21,7 @@ npm install
 npm run build
 ```
 
-View examples:
+### View examples:
 
 ```shell
 npm run dev
@@ -29,34 +29,47 @@ npm run dev
 
 ## Usage
 
-Either load the package as a remote resource like so:
+### Embedding the explorable in your site
+
+If you want to use the widgets in your site, you need to do three things.
+
+1. load the bundle via `<script>` tag in your page header
+2. add an `<svg class="d3-widgets">` container element that will contain the widgets.
+3. add a `<script>` at the end of the document that loads the explorable
+	
+like so:
 
 ```html
-<script src="https://unpkg.com/d3-widgets"></script>
+<!doctype html>
+<html>
+	<head>
+		...
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+		<script src="https://cdn.jsdelivr.net/npm/d3-widgets/dist/index.umd.js"></script>
+		...
+	</head>
+		...
+	<body>
+		...
+	    <svg id="control-panel" class="d3-widgets" width="300" height="300"></svg>
+		...
+	</body>
+		...
+	<script type="module">
+	  	
+        const button1 = widgets.button().actions(["play","pause"]).size(100)
+        d3.select("#control-panel")
+            .selectAll(null)
+            .data([button1])
+            .enter()
+            .append(widgets.widget)
+	        .attr("transform","translate(150,150)");
+
+	</script>
+		...
+</html>
 ```
 
-```html 
-<script>
-
-const a = widgets.button()
-const b = widgets.slider()
-	
-</script>
-``` 
-
-Alternatively, use a local copy (`dist/widgets.js`) and include it  in your `html`-file like so:
-
-```html
-<script src="widgets.js"></script>
-```
-
-```html
-<script>
-	
-	const b = widgets.button().size(100).shape("rect")
-	
-</script>
-```
 
 If you want to use it as part of your own project as a module import `d3-widgets` like so:
 
