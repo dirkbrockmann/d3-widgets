@@ -1,5 +1,4 @@
-import * as d3 from 'd3';
-import * as widgets from '../src/main.js';
+import { d3, widgets } from './globals.js'
 
 const showvalue = () => {
 		d3.select("#buttonvalue").text("Button 1: "+button1.value())

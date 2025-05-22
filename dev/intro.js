@@ -1,5 +1,4 @@
-import * as d3 from 'd3';
-import * as widgets from '../src/main.js';
+import { d3, widgets } from './globals.js'
 
 const w = 800;
 const h = 600;

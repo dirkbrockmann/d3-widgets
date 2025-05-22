@@ -1,6 +1,6 @@
-import * as d3 from 'd3';
-import * as widgets from '../src/main.js';
+import { d3, widgets } from './globals.js'
 
+    
 const w = 400, h = 150;
 
 const svg = d3.select("#button-features-1").append("svg")

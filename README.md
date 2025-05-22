@@ -2,7 +2,7 @@
 
 ```d3-widgets.js``` provides widgets (buttons, sliders, toggles and radioboxes) to augment your d3-visualization.
 
-> Note: A comprehensive documentation is still missing.... will come soon.
+> Note: A comprehensive documentation is still missing. You can clone the repo, and run the examples. There's a bit of documentation in it.
 
 ## Installation
 
@@ -24,17 +24,8 @@ npm run build
 View examples:
 
 ```shell
-npm run examples
+npm run dev
 ```
-
-or start
-
-```shell
-http-server ./dist
-```
-
-and open `http://localhost:8080/` in the browser.
-
 
 ## Usage
 

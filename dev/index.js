@@ -1,5 +1,4 @@
-import './style.css';              // ← make sure this is first!
-import '../src/widgets.module.css';
+import './style.css';           
 import './intro.js';
 import './buttontypes.js';
 import './button-features-1.js';
