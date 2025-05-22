@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>d3-widgets Development</title>
+  <!-- We'll import style through JavaScript -->
+   
+</head>
+<body class="prose dark:prose-invert bg-slate-50 p-6 max-w-5xl mx-auto font-mono dark:bg-black dark:text-white">
+  <section class="mb-8">
+    <h1 class="text-3xl font-bold my-4 pt-8">d3-widgets</h1>
+    <p class="text-lg mb-3">
+      with <strong class="dark:text-red-400 text-red-700">d3-widgets</strong> you can add 
+      <strong class="dark:text-red-400 text-red-700">buttons</strong>, 
+      <strong class="dark:text-red-400 text-red-700">sliders</strong>, 
+      <strong class="dark:text-red-400 text-red-700">radioboxes</strong> and 
+      <strong class="dark:text-red-400 text-red-700">toggles</strong> 
+      to your <strong class="dark:text-red-400 text-red-700">d3</strong> visualization.
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-8 mb-12">
+        <div class="bg-white dark:bg-black p-4 rounded shadow">
+            <h2 class="text-xl font-semibold mb-4 dark:text-white">The widgets look like this:</h2>
+            <div id="intro-container" class="d3-widgets border border-slate-200 rounded dark:border-slate-700 dark:bg-black h-auto"></div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-8 mb-12">
+
+        <div class="bg-white dark:bg-black p-4 rounded shadow">
+            <h2 class="text-xl font-semibold mb-4 dark:text-white">Buttons:</h2>
+            <p>Here's a display of available buttons:</p>
+            <div id="button_types" class="d3-widgets border border-slate-200 rounded dark:border-slate-700 dark:bg-black h-auto w-auto"></div>
+
+<pre><code class="language-javascript">
+
+import * as d3 from 'd3';
+import * as widgets from 'd3-widgets';
+
+const w = 800, h = 100;
+
+const svg = d3.select("#button_types").append("svg").classed("d3-widgets",true)
+	.attr("width", w).attr("height", h)
+    .attr("viewBox","0 0 "+w+" "+h)	
+    .style("width", "100%")
+
+const b = [
+		widgets.button().actions(["play"]),
+		widgets.button().actions(["stop"]),
+		widgets.button().actions(["back"]),
+		widgets.button().actions(["pause"]),
+		widgets.button().actions(["reload"]),
+		widgets.button().actions(["capture"]),
+		widgets.button().actions(["rewind"]),
+		widgets.button().actions(["forward"]),
+		widgets.button().actions(["push"])
+]
+
+svg.selectAll(null).data(b).enter().append(widgets.widget)
+		.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 9)+","+h/2+")"});
+ </code></pre>
+
+        
+
+        <p>You can define buttons that <strong>cycle</strong> through their actions on click, set different <strong>sizes</strong>, add <strong>labels</strong>, change <strong>label position</strong> ("top", "bottom" , "left", "right"), the <strong>shape</strong> ("round","rect") and <strong>fontsize</strong></p>  
+         <div id="button-features-1" class="d3-widgets border border-slate-200 rounded dark:border-slate-700 dark:bg-black h-auto w-auto"></div>
+
+    <pre><code class="language-javascript">
+import * as d3 from 'd3';
+import * as widgets from 'd3-widgets';
+
+const w = 400, h = 150;
+
+const svg = d3.select("#button-features-1").append("svg")
+    .classed("d3-widgets",true)
+	.attr("width", w).attr("height", h)
+    .attr("viewBox","0 0 "+w+" "+h)	
+    .style("width", "100%")
+
+const button1 = widgets.button().actions(["play","pause"])
+	.size(100).label("wonk").labelposition("top")
+
+const button2 = widgets.button().actions(["rewind","stop","reload"])
+	.size(60).label("donk").labelposition("right").shape("rect")
+	.fontsize(30)
+
+svg.selectAll(null).data([button1, button2]).enter().append(widgets.widget)
+	.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 2)+","+h/2+")"});
+ </code></pre>
+
+        <p>You can assign an <strong>update</strong> function to a button that gets called when the button is pressed. Here one update function reports the button value, the second one the current action:</p>
+        <div id="button-features-2" class="d3-widgets border border-slate-200 rounded dark:border-slate-700 dark:bg-black h-auto w-auto"></div>
+
+<pre><code class="language-javascript">
+import * as d3 from 'd3';
+import * as widgets from 'd3-widgets';
+
+const showvalue = () => {
+		d3.select("#buttonvalue").text("Button 1: "+button1.value())
+}
+
+const showaction = () => {
+		d3.select("#buttonaction").text("Button 2: "+button2.actions()[button2.value()])
+}
+
+const w = 400, h = 150, buttonsize = 100;
+
+const svg = d3.select("#button-features-2").append("svg")
+	.classed("d3-widgets",true)
+    .attr("width", w).attr("height", h)
+   .attr("viewBox","0 0 "+w+" "+h)	
+    .style("width", "100%")
+
+const button1 = widgets.button().actions(["play","pause"])
+    .update(showvalue).size(buttonsize)
+
+const button2 = widgets.button().actions(["rewind","stop","reload"])
+    .update(showaction).size(buttonsize)
+
+svg.selectAll(null).data([button1, button2]).enter().append(widgets.widget)
+	.attr("transform",function(d,i){return "translate("+((i+0.5) * w / 2)+","+h/2+")"});
+
+d3.select("#button-features-2")
+	.append("p").attr("id","buttonvalue")
+    .text("Button 1: "+button1.value())
+
+d3.select("#button-features-2")
+	.append("p").attr("id","buttonaction")
+    .text("Button 2: "+button2.actions()[button2.value()])
+ </code></pre>        
+    </div>
+
+    </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-8 mb-12">
+        <div class="bg-white dark:bg-black p-4 rounded shadow">
+            <h2 class="text-xl font-semibold mb-4 dark:text-white">Sliders:</h2>
+            <p>Here's a simple slider:</p>	
+            <div id="slider-features-1" class="d3-widgets border border-slate-200 rounded dark:border-slate-700 dark:bg-black h-auto"></div>
+ <pre><code class="language-javascript">
+import * as d3 from 'd3';
+import * as widgets from 'd3-widgets';
+
+const w = 400, h = 50;
+
+const svg = d3.select("#slider-features-1").append("svg")
+    .classed("d3-widgets",true)
+	.attr("width", w).attr("height", h)
+    .attr("viewBox","0 0 "+w+" "+h)	
+    .style("width", "100%")
+
+const slider = widgets.slider()
+
+svg.selectAll(null)
+	.data([slider]).enter().append(widgets.widget)
+	.attr("transform",function(d,i){return "translate("+0+","+h/2+")"});
+
+ </code></pre>
+         <p>Here's a a more complicate, longer slider with a large width and a smaller handle, the label on the bottom left, also showing the current value in a non-default (larger) fontsize:</p>		
+        
+         <div id="slider-features-2" class="d3-widgets border border-slate-200 rounded dark:border-slate-700 dark:bg-black h-auto"></div>
+<pre><code class="language-javascript">
+import * as d3 from 'd3';
+import * as widgets from 'd3-widgets';
+
+const w = 400, h = 80;
+
+const svg = d3.select("#slider-features-2").append("svg")
+	.classed("d3-widgets",true)
+    .attr("width", w).attr("height", h)
+    .attr("viewBox","0 0 "+w+" "+h)	
+    .style("width", "100%")
+
+const slider = widgets.slider()
+	.label("snirksen")
+	.girth(20)
+	.knob(5)
+	.size(300)
+	.labelposition("bottom-left")
+	.show(true)
+	.fontsize(20);
+
+svg.selectAll(null)
+	.data([slider]).enter().append(widgets.widget)
+	.attr("transform",function(d,i){return "translate(50,"+h/2+")"});
+ </code></pre>
+        <p>Here's a simple row of sliders that control three variables. You can also set the coordinates of the individual sliders using the position method:<code>widgets.slider().position({x:XVALUE,y:YVALUE})</code></p>
+        <div id="slider-features-3" class="d3-widgets border border-slate-200 rounded dark:border-slate-700 dark:bg-black h-auto"></div>
+<pre><code class="language-javascript">
+import * as d3 from 'd3';
+import * as widgets from 'd3-widgets';
+
+const w = 400, h = 180;
+
+const svg = d3.select("#slider-features-3").append("svg")
+	.classed("d3-widgets",true)
+    .attr("width", w).attr("height", h)
+    .attr("viewBox","0 0 "+w+" "+h)	
+    .style("width", "100%")
+
+const sliders = ["topel","fruck","goint"].map( q => widgets.slider().label(q))
+
+sliders.forEach((s,i)=>{
+	s.position({x:0,y:(i+0.5)*60+10})
+})
+
+svg.selectAll(null)
+	.data(sliders).enter().append(widgets.widget)
+ </code></pre>	
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-8 mb-12">
+        <div class="bg-white dark:bg-black p-4 rounded shadow">
+        <h2>Toggles:</h2>
+        <p>These are simple, two-state, or on and off switches:</p>	
+        <div id="toggle-features-1" class="d3-widgets border border-slate-200 rounded dark:border-slate-700 dark:bg-black h-auto"></div>
+<pre><code class="language-javascript">
+import * as d3 from 'd3';
+import * as widgets from 'd3-widgets';
+
+const w = 600, h = 80;
+
+const svg = d3.select("#toggle-features-1").append("svg")
+	.classed("d3-widgets",true)
+    .attr("width", w).attr("height", h)
+    .attr("viewBox","0 0 "+w+" "+h)	
+    .style("width", "100%")
+
+const labels = ["topel","fruck","goint","mulk"];
+const labelpos = ["left","bottom","top","right"];
+
+const toggles = labels
+	.map( (q,i) => widgets.toggle().label(q).labelposition(labelpos[i]))
+
+toggles.forEach((t,i)=>{ t.position({x:(i)* w / 4+80,y:h/2})})
+
+svg.selectAll(null).data(toggles).enter().append(widgets.widget)
+ </code></pre>	        
+        </div>
+    </div>
+   <div class="grid grid-cols-1 md:grid-cols-1 gap-8 mb-12">
+        <div class="bg-white dark:bg-black p-4 rounded shadow">
+           <h2>Radioboxes:</h2>
+            <p>Radiobox provide mutually exclusive choices. Choices are an array of strings. For radios they are required.</p>	
+            <div id="radio-features-1" class="d3-widgets border border-slate-200 rounded dark:border-slate-700 dark:bg-black h-auto"></div>
+<pre><code class="language-javascript">
+import * as d3 from 'd3';
+import * as widgets from 'd3-widgets';
+
+cconst w = 400, h = 150;
+
+const svg = d3.select("#radio-features-1").append("svg")
+	.classed("d3-widgets",true)
+	.attr("width", w).attr("height", h)
+    .attr("viewBox","0 0 "+w+" "+h)	
+    .style("width", "100%")
+
+const choices = ["topel","fruck","goint","mulk"];
+
+const radio = widgets.radio().choices(choices).position({x:20,y:25})
+
+svg.selectAll(null).data([radio]).enter().append(widgets.widget);
+ </code></pre>
+ <p>You can arrange them horizontally, change fontsize, buttonsize, buttonpadding and other features:</p>
+  <div id="radio-features-2" class="d3-widgets border border-slate-200 rounded dark:border-slate-700 dark:bg-black h-auto"></div>
+  <pre><code class="language-javascript">
+import * as d3 from 'd3';
+import * as widgets from 'd3-widgets';
+
+const w = 600, h = 120;
+
+const svg = d3.select("#radio-features-2").append("svg")
+	.classed("d3-widgets",true)
+	.attr("width", w).attr("height", h)
+    .attr("viewBox","0 0 "+w+" "+h)	
+    .style("width", "100%")
+
+const choices = ["topel","fruck","goint","mulk","semples"];
+
+const radio = widgets.radio()
+	.choices(choices)
+	.position({x:50,y:h/2})
+	.shape("rect")
+	.orientation("horizontal")
+	.labelposition("top")
+	.fontsize(20)
+	.size(400)
+	.buttonsize(60)
+	.buttonpadding(0.7)
+
+svg.selectAll(null).data([radio]).enter().append(widgets.widget);
+ </code></pre>	              
+        </div>
+    </div> 
+
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-8 mb-12">
+        <div class="bg-white dark:bg-black p-4 rounded shadow">
+            <h2 class="text-xl font-semibold mb-4 dark:text-white">Grid:</h2>
+            <p>You can use a provided grid ( widgets.grid() ), to place widgets on it using the position method:</p>
+            <div id="grid-example" class="d3-widgets border border-slate-200 rounded dark:border-slate-700 dark:bg-black h-auto py-3"></div>
+            <pre><code class="language-javascript">
+import * as d3 from 'd3';
+import * as widgets from 'd3-widgets';
+
+const w = 600, h = 200;	
+	
+const svg = d3.select("#grid-example").append("svg")
+	.classed("d3-widgets",true)
+	.attr("width", w).attr("height", h)
+    .attr("viewBox","0 0 "+w+" "+h)	
+    .style("width", "100%")
+
+const grid = widgets.grid(w, h, 18, 6);
+const latt = grid.points();
+	
+svg.selectAll(null).data(latt).enter().append("circle").attr("r",2).style("fill","black")
+	.attr("transform",function(d){ return "translate("+d.x+","+d.y+")" });
+	
+const button = widgets.button().actions(["play","pause"]).position(grid.position(2,3))
+const slider = widgets.slider().position(grid.position(8,2))
+	
+const toggle_position = grid.position([10,12,14],4)	
+const toggles = ["a","b","c"].map((x,i)=>widgets.toggle().label(x).position(toggle_position[i]))
+		 
+svg.selectAll(null).data([button]).enter().append(widgets.widget)	
+svg.selectAll(null).data([slider]).enter().append(widgets.widget)	
+svg.selectAll(null).data(toggles).enter().append(widgets.widget)	
+ </code></pre>	
+        </div>
+    </div>
+  </section>
+  
+    
+  <!-- Import your JavaScript which will import the CSS -->
+  <script type="module" src="./examples/index.js"></script>
+</body>
+</html>

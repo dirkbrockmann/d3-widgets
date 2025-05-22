@@ -1,59 +1,102 @@
+/* 1) Light-mode custom-properties on the real `.d3-widgets` wrapper */
+:global(.d3-widgets) {
+  --color-border:        rgb(150, 150, 150);
+  --color-background:    #ccc;
+  --color-text:          #000;
+  --color-symbol:        #fff;
+  --color-lit:           #eee;
+  --color-lit-symbol:    #bbb;
+  --color-selected:      #000;
+  --color-handle:        #fff;
+}
+
+/* 2) System-dark overrides */
+@media (prefers-color-scheme: dark) {
+  :global(.d3-widgets) {
+  --color-border:        rgb(105, 105, 105);
+  --color-background:    #333;
+  --color-text:          #bcbcbc;
+  --color-symbol:        #000;
+  --color-lit:           #111;
+  --color-lit-symbol:    #444;
+  --color-selected:      #dbdbdb;
+  --color-handle:        #9f9f9f;
+}
+}
+
+/* 3) Manual dark-mode override (fires last) */
+:global(.d3-widgets.dark-mode) {
+  --color-border:        rgb(105, 105, 105);
+  --color-background:    #333;
+  --color-text:          #bcbcbc;
+  --color-symbol:        #000;
+  --color-lit:           #111;
+  --color-lit-symbol:    #444;
+  --color-selected:      #dbdbdb;
+  --color-handle:        #9f9f9f;
+}
+
+/* 4) Local (scoped) widget styles — these get hashed by CSS-Modules */
 .widget {
-	stroke: rgb(150,150,150);
-	stroke-width: 1px;
-	cursor: pointer;
-	pointer-events:all;
-	stroke-opacity:1;
-	fill-opacity:1;
-	fill: #ccc;
-	font-size:16px;
+  stroke:           var(--color-border);
+  stroke-width:     1px;
+  cursor:           pointer;
+  pointer-events:   all;
+  stroke-opacity:   1;
+  fill-opacity:     1;
+  fill:             var(--color-background);
+  font-size:        16px;
 }
 
 .widget .title {
-	font-size:20px;
-    fill:black;
-    stroke:none;
-	text-anchor:middle;
+  font-size:        20px;
+  fill:             var(--color-text);
+  stroke:           none;
+  text-anchor:      middle;
 }
 
 .widget .label {
-    fill:black;
-    stroke:none;
+  fill:             var(--color-text);
+  stroke:           none;
 }
 
-.widget .lit{
-	fill: #eee;
+.widget .lit {
+  fill:             var(--color-lit);
 }
 
-
-.button > .symbol, .radio > .radiobutton > .symbol {
-	fill: #fff;
-	fill-rule:nonzero;
-	pointer-events: none;
+.button > .symbol,
+.radio > .radiobutton > .symbol {
+  fill:             var(--color-symbol);
+  fill-rule:        nonzero;
+  pointer-events:   none;
 }
 
-.widget .symbol.selected, .toggle.selected, .widget .symbol.selected.lit{
-	fill: #000;
+.widget .symbol.selected,
+.toggle.selected,
+.widget .symbol.selected.lit {
+  fill:             var(--color-selected);
 }
-
 
 .widget .symbol.lit {
-	fill: #bbb;
+  fill:             var(--color-lit-symbol);
 }
 
-.slider > .track, .toggle > .track {
-	pointer-events: none;
+.slider > .track,
+.toggle > .track {
+  pointer-events:   none;
 }
 
-.slider > .track_overlay, .toggle > .track_overlay {
-  pointer-events: all;
-  cursor: pointer;
-  fill: transparent;
-  stroke: transparent;
+.slider > .track_overlay,
+.toggle > .track_overlay {
+  pointer-events:   all;
+  cursor:           pointer;
+  fill:             transparent;
+  stroke:           transparent;
 }
 
-.slider > .handle, .toggle > .handle {
-  fill: #fff;
+.slider > .handle,
+.toggle > .handle {
+  fill:             var(--color-handle);
 }
 
 
