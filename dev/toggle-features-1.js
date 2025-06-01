@@ -1,7 +1,5 @@
 import { d3, widgets } from './globals.js'
 
-
-
 const w = 600, h = 80;
 
 const svg = d3.select("#toggle-features-1").append("svg")
