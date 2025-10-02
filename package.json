@@ -1,6 +1,6 @@
 {
   "name": "d3-widgets",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "Widgets for d3 Applications and Visualizations",
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "tailwindcss": "^4.1.4",
     "vite": "^6.3.2",
     "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vite-plugin-libcss": "^1.1.2",
     "vite-plugin-prismjs": "^0.0.11"
   }
 }

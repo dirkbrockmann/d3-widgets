@@ -1,12 +1,14 @@
 import { defineConfig } from 'vite'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import tailwindcss from '@tailwindcss/vite'
+import libCss from 'vite-plugin-libcss';
 
 export default defineConfig({
   plugins: [	  	
 	  //	virtualMetaPlugin(),
 	   tailwindcss(),
 		cssInjectedByJsPlugin(),
+		libCss()
   ],
   build: {
 	lib: {
@@ -23,3 +25,5 @@ export default defineConfig({
     }
   }
 })
+
+

@@ -1,5 +1,6 @@
 /* 1) Light-mode custom-properties on the real `.d3-widgets` wrapper */
 :global(.d3-widgets) {
+  /* Theme color tokens */
   --color-border:        rgb(150, 150, 150);
   --color-background:    #ccc;
   --color-text:          #000;
@@ -8,6 +9,14 @@
   --color-lit-symbol:    #bbb;
   --color-selected:      #000;
   --color-handle:        #fff;
+
+  /* Typography contract (Phase 1) */
+  --dw-font-size:        16px;       /* base size for widgets */
+  --dw-line-height:      1.25;       /* generic vertical rhythm */
+  font-size:             var(--dw-font-size);
+  line-height:           var(--dw-line-height);
+  font-family:           system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-weight:           400;
 }
 
 /* 2) System-dark overrides */
@@ -45,11 +54,13 @@
   stroke-opacity:   1;
   fill-opacity:     1;
   fill:             var(--color-background);
-  font-size:        16px;
+  /* Use relative font sizing (Phase 2 readiness); fallback retains 16px */
+  font-size:        1em; /* inherits 16px from container by default */
 }
 
 .widget .title {
-  font-size:        20px;
+  /* 20px relative to 16px base ≈ 1.25em */
+  font-size:        1.25em;
   fill:             var(--color-text);
   stroke:           none;
   text-anchor:      middle;
