@@ -34,6 +34,30 @@ export default (d,i) => {
 // 		.style("stroke-width", d.girth())
 	
 	const overlay_width = d.knob()>d.girth() ? d.knob() : d.girth()/2;
+
+	// Helper: map a (pointer/drag/touch) event to local slider x in SVG user units,
+	// robust to CSS scaling (e.g., slide deck transforms) by using DOMRect vs SVG width.
+	const getClientX = (evt) => {
+		const e = evt && evt.sourceEvent ? evt.sourceEvent : evt;
+		if (!e) return null;
+		if (e.clientX != null) return e.clientX;
+		if (e.touches && e.touches.length) return e.touches[0].clientX;
+		if (e.changedTouches && e.changedTouches.length) return e.changedTouches[0].clientX;
+		return null;
+	};
+
+	const localSliderX = (evt, node) => {
+		const cx = getClientX(evt);
+		if (cx == null) return null;
+		const rect = node.getBoundingClientRect();
+		// x in CSS pixels within the overlay rect
+		const xCss = cx - rect.left;
+		// Convert CSS pixels to SVG user units using the rect's width attribute
+		const widthSvg = node.width && node.width.baseVal ? node.width.baseVal.value : rect.width;
+		const scale = rect.width ? widthSvg / rect.width : 1;
+		// Adjust for the overlay's left padding (translate(-overlay_width, ...)) to align with track [0, d.size()]
+		return xCss * scale - overlay_width;
+	};
 	
 	base.append("path")
 		.attr("d",track(d.size(),d.girth()))
@@ -50,7 +74,9 @@ export default (d,i) => {
 		.attr("transform","translate("+(-overlay_width)+","+(-overlay_width)+")")
 		.attr("class", styles.track_overlay)
 		.on("click",function(event) {
-				const x = pointer(event,this)[0]
+				const sx = localSliderX(event, this);
+				if (sx == null) return;
+				const x = Math.max(0, Math.min(d.size(), sx));
 				d.value(X.invert(x));
 				d.update();
 				d.update_end();
@@ -61,7 +87,10 @@ export default (d,i) => {
 			})
 		.call(drag()
 			.on("drag", function(event) {
-				d.value(X.invert(event.x));
+				const sx = localSliderX(event, this);
+				if (sx == null) return;
+				const x = Math.max(0, Math.min(d.size(), sx));
+				d.value(X.invert(x));
 				d.update();
 				base.selectAll("."+styles.handle).attr("cx", X(d.value()))
 				if(d.show()){
@@ -76,10 +105,15 @@ export default (d,i) => {
 	
 	var xpos,ypos,anchor,valign="bottom";
 
-	if (d.fontsize) {			
-	 	ypos = d.labelposition().match(/bottom/i)!=null ? (max([d.girth() / 2,d.knob()])) + d.fontsize() / 2: - (max([d.girth() / 2,d.knob()])) - d.fontsize() / 2;
-	}{
-		ypos = d.labelposition().match(/bottom/i)!=null ? (max([d.girth() / 2,d.knob()])) + 7: - (max([d.girth() / 2,d.knob()])) - 7;
+	// Respect explicit font size when computing label offset; fall back to a default otherwise.
+	if (d.fontsize) {
+		ypos = d.labelposition().match(/bottom/i) != null
+			? (max([d.girth() / 2, d.knob()])) + d.fontsize() / 2
+			: -(max([d.girth() / 2, d.knob()])) - d.fontsize() / 2;
+	} else {
+		ypos = d.labelposition().match(/bottom/i) != null
+			? (max([d.girth() / 2, d.knob()])) + 7
+			: -(max([d.girth() / 2, d.knob()])) - 7;
 	}
 	
 	 xpos = d.labelposition().match(/right/i)!=null ? d.size() : (d.labelposition().match(/center/i)!=null ? d.size() / 2 : 0);
