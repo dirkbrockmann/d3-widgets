@@ -106,14 +106,15 @@ export default (d,i) => {
 	var xpos,ypos,anchor,valign="bottom";
 
 	// Respect explicit font size when computing label offset; fall back to a default otherwise.
+	const pad = (typeof d.labelpadding === "function" ? d.labelpadding() : 4) || 0;
 	if (d.fontsize) {
 		ypos = d.labelposition().match(/bottom/i) != null
-			? (max([d.girth() / 2, d.knob()])) + d.fontsize() / 2
-			: -(max([d.girth() / 2, d.knob()])) - d.fontsize() / 2;
+			? (max([d.girth() / 2, d.knob()])) + d.fontsize() / 2 + pad
+			: -(max([d.girth() / 2, d.knob()])) - d.fontsize() / 2 - pad;
 	} else {
 		ypos = d.labelposition().match(/bottom/i) != null
-			? (max([d.girth() / 2, d.knob()])) + 7
-			: -(max([d.girth() / 2, d.knob()])) - 7;
+			? (max([d.girth() / 2, d.knob()])) + 7 + pad
+			: -(max([d.girth() / 2, d.knob()])) - 7 - pad;
 	}
 	
 	 xpos = d.labelposition().match(/right/i)!=null ? d.size() : (d.labelposition().match(/center/i)!=null ? d.size() / 2 : 0);
