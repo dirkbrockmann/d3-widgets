@@ -11,15 +11,10 @@
   --color-handle:        #fff;
 
   /* Typography contract */
-  --d3w-font-size:       16px;       /* base size for widgets */
-  --d3w-line-height:     1.25;       /* generic vertical rhythm */
-  --d3w-font-family:     system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  --d3w-font-weight:     400;
-
-  font-size:             var(--d3w-font-size);
-  line-height:           var(--d3w-line-height);
-  font-family:           var(--d3w-font-family);
-  font-weight:           var(--d3w-font-weight);
+  font-size:             var(--d3w-font-size, 16px); /* base size for widgets */
+  line-height:           var(--d3w-line-height, 1.25); /* generic vertical rhythm */
+  font-family:           var(--d3w-font-family, system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif);
+  font-weight:           var(--d3w-font-weight, 400);
 }
 
 /* 2) System-dark overrides */
