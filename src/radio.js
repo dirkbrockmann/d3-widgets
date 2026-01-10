@@ -14,6 +14,7 @@ export default () => {
 		orientation = "vertical",
 		position = {x:0,y:0},
 		labelposition = "right",
+		name = null,
 		fontsize = null,
 		update = function(x) {},		
 		choices = [],
@@ -36,6 +37,7 @@ export default () => {
 		return {
 			type: type,
 			id: function(arg) { if ("undefined" === typeof arg) { return id } else { id = arg; return this }},						
+			name: function(arg) { if ("undefined" === typeof arg) { return name } else { name = arg; return this }},						
 			size: function(arg) { if ("undefined" === typeof arg) { return size } else { size = arg; return this }},
 			buttonsize: function(arg) { if ("undefined" === typeof arg) { return buttonsize } else { buttonsize = arg; return this }},
 			buttonpadding: function(arg) { if ("undefined" === typeof arg) { return buttonpadding } else { buttonpadding = arg; return this }},
